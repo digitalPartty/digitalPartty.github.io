@@ -229,7 +229,7 @@
             
             <div class="markdown-body">
               <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>frp 是一个可用于内网穿透的高性能的反向代理开源应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/rp1.PNG" srcset="/img/loading.gif" lazyload><br>frp 使用Go 语言开发，得益于此，我们使用非常简单，只需要添加执行权限就可以运行了。如果需要将它运行在后台，作为服务的运行的话，就需要我们对系统有一定的了解了，下面我简单介绍一下，如何将 frp安装为系统服务<br>注意：在安装服务之前，请确保你的 frp 已经参照<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">官方文档</a>进行了正确的配置。</p>
-<h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><p>若要将 frp 安装为 windows 的服务，我们需要借助第三方的开源工具 nssm 来实现，以下是操作步骤：<br><a href="/download/nssm-2.24.zip" download>nssm</a></p>
+<h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><p>若要将 frp 安装为 windows 的服务，我们需要借助第三方的开源工具 nssm 来实现，以下是操作步骤：<br><a href="nssm-2.24.zip">nssm</a></p>
 <ol>
 <li>以管理员方式运行 cmd, 直接输入 d 按回车 切换到d盘</li>
 <li>在cmd中运行 命令.\nssm install ，此时会弹出 Gui</li>
