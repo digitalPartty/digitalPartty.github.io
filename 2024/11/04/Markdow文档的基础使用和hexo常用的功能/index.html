@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      1.2k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      15
        分钟
     </span>
   
@@ -228,7 +228,119 @@
             <h1 style="display: none">Markdown文档的基础使用和hexo常用的功能</h1>
             
             <div class="markdown-body">
-              
+              <h2 id="Markdown文档的基础使用"><a href="#Markdown文档的基础使用" class="headerlink" title="Markdown文档的基础使用"></a>Markdown文档的基础使用</h2><h3 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h3><p>要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题(例如：### My Header)。</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>样式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td># 一级标题</td>
+<td><h1>一级标题</h1></td>
+</tr>
+<tr>
+<td>## 二级标题</td>
+<td><h2>一级标题</h2></td>
+</tr>
+<tr>
+<td>### 三级标题</td>
+<td><h3>一级标题</h3></td>
+</tr>
+<tr>
+<td>#### 四级标题</td>
+<td><h4>一级标题</h4></td>
+</tr>
+<tr>
+<td>##### 五级标题</td>
+<td><h5>一级标题</h5></td>
+</tr>
+<tr>
+<td>###### 六级标题</td>
+<td><h6>一级标题</h6></td>
+</tr>
+</tbody></table>
+<h3 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h3><h4 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h4><p>要加粗文本，请在单词或短语的前后各添加两个星号（asterisks）或下划线（underscores）。如需加粗一个单词或短语的中间部分用以表示强调的话，请在要加粗部分的两侧各添加两个星号（asterisks）。</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>样式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>**bold text**</code></td>
+<td><strong>bold text</strong></td>
+</tr>
+</tbody></table>
+<h4 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h4><p>要用斜体显示文本，请在单词或短语前后添加一个星号（asterisk）或下划线（underscore）。要斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>样式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*bold text*</code></td>
+<td>*bold text *</td>
+</tr>
+</tbody></table>
+<h4 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h4><p>要同时用粗体和斜体突出显示文本，请在单词或短语的前后各添加三个星号或下划线。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>样式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>***bold text***</code></td>
+<td><em><strong>bold text</strong></em></td>
+</tr>
+</tbody></table>
+<h3 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h3><p>要创建块引用，请在段落前添加一个 &gt; 符号。</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-title class_">Dorothy</span> followed her through many <span class="hljs-keyword">of</span> the beautiful rooms <span class="hljs-keyword">in</span> her castle. </span><br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+</blockquote>
+<h4 id="多个段落的块引用"><a href="#多个段落的块引用" class="headerlink" title="多个段落的块引用"></a>多个段落的块引用</h4><p>块引用可以包含多个段落。为段落之间的空白行添加一个 &gt; 符号。</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-title class_">Dorothy</span> followed her through many <span class="hljs-keyword">of</span> the beautiful rooms <span class="hljs-keyword">in</span> her castle.</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-title class_">The</span> <span class="hljs-title class_">Witch</span> bade her clean the pots and kettles and sweep the floor and keep the fire fed <span class="hljs-keyword">with</span> wood. </span><br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood. </p>
+</blockquote>
+<h4 id="嵌套块引用"><a href="#嵌套块引用" class="headerlink" title="嵌套块引用"></a>嵌套块引用</h4><p>块引用可以嵌套。在要嵌套的段落前添加一个 &gt;&gt; 符号。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mipsasm">&gt; Dorothy followed her through many of the <span class="hljs-keyword">beautiful </span>rooms in her castle.<br>&gt;<br>&gt;&gt; The Witch <span class="hljs-keyword">bade </span>her clean the pots <span class="hljs-keyword">and </span>kettles <span class="hljs-keyword">and </span><span class="hljs-keyword">sweep </span>the floor <span class="hljs-keyword">and </span>keep the fire fed with wood.<br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+<blockquote>
+<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
+</blockquote>
+</blockquote>
+<h4 id="带有其它元素的块引用"><a href="#带有其它元素的块引用" class="headerlink" title="带有其它元素的块引用"></a>带有其它元素的块引用</h4><p>块引用可以包含其他 Markdown 格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效。</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">#### <span class="hljs-title class_">The</span> quarterly results look great!</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- <span class="hljs-title class_">Revenue</span> was off the chart.</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- <span class="hljs-title class_">Profits</span> were higher than ever.</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"> *<span class="hljs-title class_">Everything</span>* is going according to **plan**.</span><br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<h4 id="The-quarterly-results-look-great"><a href="#The-quarterly-results-look-great" class="headerlink" title="The quarterly results look great!"></a>The quarterly results look great!</h4><ul>
+<li>Revenue was off the chart.</li>
+<li>Profits were higher than ever.</li>
+</ul>
+<p> <em>Everything</em> is going according to <strong>plan</strong>.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/">markdown文档链接</a></p>
+<h2 id="hexo的常用功能"><a href="#hexo的常用功能" class="headerlink" title="hexo的常用功能"></a>hexo的常用功能</h2><h3 id="使用本地图片"><a href="#使用本地图片" class="headerlink" title="使用本地图片"></a>使用本地图片</h3><h4 id="打开开关"><a href="#打开开关" class="headerlink" title="打开开关"></a>打开开关</h4><p>修改_config.yml,设置</p>
+<figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-attr">post_asset_folder</span>=<span class="hljs-literal">true</span><br></code></pre></div></td></tr></table></figure>
+<h4 id="新建一个文章"><a href="#新建一个文章" class="headerlink" title="新建一个文章"></a>新建一个文章</h4><figure class="highlight actionscript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs actionscript">hexo <span class="hljs-keyword">new</span> 如何在hexo使用图片<br></code></pre></div></td></tr></table></figure>
+<p>这时候会自动在md文件目录生成一个同名的文件夹，把你要贴的图片附件，全都放在这里即可。</p>
+<figure class="highlight tap"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs tap">MacBook-Pro:_posts abone$ ll -lat 如何在hexo使用图片<br>total 1696<br>drwxr-xr-x  <span class="hljs-number"> 6 </span>abone  staff    <span class="hljs-number"> 204 </span><span class="hljs-number"> 5 </span>25 19:31 .<br>drwxr-xr-x <span class="hljs-number"> 11 </span>abone  staff    <span class="hljs-number"> 374 </span><span class="hljs-number"> 5 </span>25 19:31 ..<br>-rw-r--r--@ <span class="hljs-number"> 1 </span>abone  staff   <span class="hljs-number"> 6148 </span><span class="hljs-number"> 5 </span>25 19:27 .DS_Store<br>-rw-r--r--@ <span class="hljs-number"> 1 </span>abone  staff  <span class="hljs-number"> 22988 </span><span class="hljs-number"> 5 </span>25 19:26 图片2.jpg<br>-rw-r--r--@ <span class="hljs-number"> 1 </span>abone  staff  <span class="hljs-number"> 14468 </span><span class="hljs-number"> 5 </span>25 19:25 图片1.jpeg<br>-rw-r-----@ <span class="hljs-number"> 1 </span>abone  staff <span class="hljs-number"> 817742 </span><span class="hljs-number"> 5 </span><span class="hljs-number"> 5 </span>18:35 HAPROXYCODE.pdf<br></code></pre></div></td></tr></table></figure>
+<h4 id="文章里插入图片和附件链接"><a href="#文章里插入图片和附件链接" class="headerlink" title="文章里插入图片和附件链接"></a>文章里插入图片和附件链接</h4><figure class="highlight scss"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs scss">!<span class="hljs-selector-attr">[这是图片描述]</span>(HAPROXYCODE.pdf)<br></code></pre></div></td></tr></table></figure>
+<h3 id="分类和标签"><a href="#分类和标签" class="headerlink" title="分类和标签"></a>分类和标签</h3><h4 id="给文章添加“categories”属性"><a href="#给文章添加“categories”属性" class="headerlink" title="给文章添加“categories”属性"></a>给文章添加“categories”属性</h4><p>打开需要添加分类的文章，为其添加categories属性。下方的categories: web前端表示添加这篇文章到“web前端”这个分类。注意：hexo一篇文章只能属于一个分类，也就是说如果在“- web前端”下方添加“-xxx”，hexo不会产生两个分类，而是把分类嵌套（即该文章属于 “- web前端”下的 “-xxx ”分类）。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">Markdown文档的基础使用和hexo常用的功能</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2024-11-04 16:24:03</span><br><span class="hljs-attr">categories:</span> <br><span class="hljs-bullet">-</span> <span class="hljs-string">个人Blog</span><br><span class="hljs-meta">---</span><br></code></pre></div></td></tr></table></figure>
+<p>至此，成功给文章添加分类，点击首页的“分类”可以看到该分类下的所有文章。当然，只有添加了categories: xxx的文章才会被收录到首页的“分类”中。</p>
+<h4 id="生成“标签”页并添加tpye属性"><a href="#生成“标签”页并添加tpye属性" class="headerlink" title="生成“标签”页并添加tpye属性"></a>生成“标签”页并添加tpye属性</h4><figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">Markdown文档的基础使用和hexo常用的功能</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2024-11-04 16:24:03</span><br><span class="hljs-attr">categories:</span> <br><span class="hljs-bullet">-</span> <span class="hljs-string">个人Blog</span><br><span class="hljs-attr">tags:</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">markdown</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span><br><span class="hljs-meta">---</span><br></code></pre></div></td></tr></table></figure>
+<p>至此，成功给文章添加分类，点击首页的“标签”可以看到该标签下的所有文章。当然，只有添加了tags: xxx的文章才会被收录到首页的“标签”中。</p>
+
             </div>
             <hr>
             <div>
@@ -263,6 +375,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Centos7安装RabbitMQ3.8.5</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
