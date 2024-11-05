@@ -248,7 +248,7 @@
 <h3 id="安装gitlab-安装命令："><a href="#安装gitlab-安装命令：" class="headerlink" title="安装gitlab 安装命令："></a>安装gitlab 安装命令：</h3><figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">rpm</span> -i gitlab-ce-<span class="hljs-number">10</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>-ce.<span class="hljs-number">0</span>.el7.x86_64.rpm<br></code></pre></div></td></tr></table></figure>
 <h3 id="修改gitlab配置文件指定服务器ip和自定义端口："><a href="#修改gitlab配置文件指定服务器ip和自定义端口：" class="headerlink" title="修改gitlab配置文件指定服务器ip和自定义端口："></a>修改gitlab配置文件指定服务器ip和自定义端口：</h3><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">vim  <span class="hljs-regexp">/etc/gi</span>tlab/gitlab.rb<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="gitlab1"><br>进入编辑器后按“i”键进入编辑状态，ESC键退出编辑状态<br>退出并保存，命令输入:wq<br>ps:注意这里设置的端口不能被占用，默认是8080端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口</p>
+<p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab1.png" srcset="/img/loading.gif" lazyload alt="gitlab1"><br>进入编辑器后按“i”键进入编辑状态，ESC键退出编辑状态<br>退出并保存，命令输入:wq<br>ps:注意这里设置的端口不能被占用，默认是8080端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口</p>
 <h3 id="重置并启动GitLab"><a href="#重置并启动GitLab" class="headerlink" title="重置并启动GitLab"></a>重置并启动GitLab</h3><p>执行：</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">gitlab-ctl reconfigure</span><br><span class="hljs-attribute">gitlab-ctl restart</span><br></code></pre></div></td></tr></table></figure>
 <p>提示  “ok: run:”表示启动成功</p>
@@ -293,13 +293,13 @@
 <li>如果看到true ，恭喜你已经成功了，执行 exit 退出当前设置流程即可。</li>
 <li>回到gitlab ,可以通过 root&#x2F;12345678 这一超级管理员账号登录了<br>至此大功搞成。<br>剩下来的就是享受成功带来的gitlab乐趣了。</li>
 </ol>
-<h2 id="创建仓库；"><a href="#创建仓库；" class="headerlink" title="创建仓库；"></a>创建仓库；</h2><h3 id="查看是否开启ssh和http"><a href="#查看是否开启ssh和http" class="headerlink" title="查看是否开启ssh和http"></a>查看是否开启ssh和http</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
-<h3 id="关闭头像服务，因其在国外，减缓了访问速度"><a href="#关闭头像服务，因其在国外，减缓了访问速度" class="headerlink" title="关闭头像服务，因其在国外，减缓了访问速度"></a>关闭头像服务，因其在国外，减缓了访问速度</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
-<h3 id="关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发"><a href="#关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发" class="headerlink" title="关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发"></a>关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
-<h3 id="登录页面的信息提示"><a href="#登录页面的信息提示" class="headerlink" title="登录页面的信息提示"></a>登录页面的信息提示</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
-<h3 id="记得保存！"><a href="#记得保存！" class="headerlink" title="记得保存！"></a>记得保存！</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
-<h3 id="新建用户（管理员操作）"><a href="#新建用户（管理员操作）" class="headerlink" title="新建用户（管理员操作）"></a>新建用户（管理员操作）</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
-<h3 id="创建仓库-项目"><a href="#创建仓库-项目" class="headerlink" title="创建仓库-项目"></a>创建仓库-项目</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h2 id="创建仓库；"><a href="#创建仓库；" class="headerlink" title="创建仓库；"></a>创建仓库；</h2><h3 id="查看是否开启ssh和http"><a href="#查看是否开启ssh和http" class="headerlink" title="查看是否开启ssh和http"></a>查看是否开启ssh和http</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab2.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="关闭头像服务，因其在国外，减缓了访问速度"><a href="#关闭头像服务，因其在国外，减缓了访问速度" class="headerlink" title="关闭头像服务，因其在国外，减缓了访问速度"></a>关闭头像服务，因其在国外，减缓了访问速度</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab3.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发"><a href="#关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发" class="headerlink" title="关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发"></a>关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab4.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="登录页面的信息提示"><a href="#登录页面的信息提示" class="headerlink" title="登录页面的信息提示"></a>登录页面的信息提示</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab5.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="记得保存！"><a href="#记得保存！" class="headerlink" title="记得保存！"></a>记得保存！</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab6.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="新建用户（管理员操作）"><a href="#新建用户（管理员操作）" class="headerlink" title="新建用户（管理员操作）"></a>新建用户（管理员操作）</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab7.png" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab8.png" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab9.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="创建仓库-项目"><a href="#创建仓库-项目" class="headerlink" title="创建仓库-项目"></a>创建仓库-项目</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab10.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
 <h3 id="创建完空白仓库就可以通过idea或者命令行等方式上传代码；"><a href="#创建完空白仓库就可以通过idea或者命令行等方式上传代码；" class="headerlink" title="创建完空白仓库就可以通过idea或者命令行等方式上传代码；"></a>创建完空白仓库就可以通过idea或者命令行等方式上传代码；</h3>
             </div>
             <hr>
@@ -317,9 +317,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/git/">git</a>
-                    
                       <a class="hover-with-bg" href="/tags/CentOS7/">CentOS7</a>
+                    
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
                     
                   </div>
                 
