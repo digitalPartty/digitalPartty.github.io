@@ -18,9 +18,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>Categories - Hexo</title>
+  <title>版本管理规范 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,9 +163,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Category">
+            <span class="h2" id="subtitle" title="版本管理规范">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-11-07 14:43" pubdate>
+        November 7, 2024 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      350 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -162,241 +215,136 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">版本管理规范</h1>
+            
+            <div class="markdown-body">
+              <h2 id="1-版本号规范"><a href="#1-版本号规范" class="headerlink" title="1. 版本号规范"></a>1. 版本号规范</h2><h3 id="1-1-规则"><a href="#1-1-规则" class="headerlink" title="1.1 规则"></a>1.1 规则</h3><ul>
+<li>字母、数字、小数点</li>
+<li>共3位，小数点区隔：版本升级.特性升级.修订补丁</li>
+<li>开发版基于稳定版发布；开发完成后，合并到一个新的稳定版版本号中<blockquote>
+<p>例如：稳定版1.0.0，开发版前端1.0.5-dev，后端1.0.9-dev，开发完成后，合并到1.1.0-stable</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="1-2-定义"><a href="#1-2-定义" class="headerlink" title="1.2 定义"></a>1.2 定义</h3><ul>
+<li>版本升级<blockquote>
+<p>大版本迭代，例如：增加新的业务场景、业务流程、功能模块<br>特点：功能模块固定，部署维护形成SOP（标准作业程序）</p>
+</blockquote>
+</li>
+<li>特性升级<blockquote>
+<p>已有功能模块迭代，例如：统计模块增加统计页面、新增驾驶舱进行统计数据的可视化展示等<br>特点：可以在现有版本上平滑升级，不影响现有业务流程</p>
+</blockquote>
+</li>
+<li>修订补丁<blockquote>
+<p>Bug修正，例如：页面展示错误、接口数据错误等<br>特点：当前版本的Bug缺陷</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-后缀规范"><a href="#2-后缀规范" class="headerlink" title="2. 后缀规范"></a>2. 后缀规范</h2><h3 id="2-1-规则"><a href="#2-1-规则" class="headerlink" title="2.1 规则"></a>2.1 规则</h3><ul>
+<li>版本号后面横线加字母</li>
+<li>后缀：稳定版：stable，开发版：dev，定制版：custom-医院CODE</li>
+</ul>
+<h3 id="2-2-定义"><a href="#2-2-定义" class="headerlink" title="2.2 定义"></a>2.2 定义</h3><ul>
+<li>稳定版-stable<blockquote>
+<p>测试通过的，可以大范围更新</p>
+</blockquote>
+</li>
+<li>开发版-dev<blockquote>
+<p>新的特性在某家医院实验中，例如章丘</p>
+</blockquote>
+</li>
+<li>定制版-custom-医院CODE<blockquote>
+<p>医院特殊需求</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-版本迭代流程"><a href="#3-版本迭代流程" class="headerlink" title="3. 版本迭代流程"></a>3. 版本迭代流程</h2><p><img src="/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/manager1.jpg" srcset="/img/loading.gif" lazyload alt="m"></p>
+<h2 id="研发流程"><a href="#研发流程" class="headerlink" title="研发流程"></a>研发流程</h2><p><img src="/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/manager2.png" srcset="/img/loading.gif" lazyload alt="mm"></p>
 
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-a41622d744ac9c55f5266dcc90ac7599" role="tab" data-toggle="collapse" href="#collapse-a41622d744ac9c55f5266dcc90ac7599"
-        aria-expanded="false"
-      >
-        软件开发
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-a41622d744ac9c55f5266dcc90ac7599" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-a41622d744ac9c55f5266dcc90ac7599">
-    
-    
-      
-      
-        <a href="/2024/11/06/%E8%BF%81%E7%A7%BBGitlab/" class="list-group-item list-group-item-action">
-          <span class="category-post">迁移Gitlab</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/" class="list-group-item list-group-item-action">
-          <span class="category-post">安装Gitlab</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/" class="list-group-item list-group-item-action">
-          <span class="category-post">Centos7安装RabbitMQ3.8.5</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-9f65b53649791c61524b0fde468bb1c4" role="tab" data-toggle="collapse" href="#collapse-9f65b53649791c61524b0fde468bb1c4"
-        aria-expanded="false"
-      >
-        管理规范
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-9f65b53649791c61524b0fde468bb1c4" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-9f65b53649791c61524b0fde468bb1c4">
-    
-    
-      
-      
-        <a href="/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/" class="list-group-item list-group-item-action">
-          <span class="category-post">版本管理规范</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/11/06/Git%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/" class="list-group-item list-group-item-action">
-          <span class="category-post">Git代码管理规范</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-bd15dacbc6f3cdc76f89eff662d3789f" role="tab" data-toggle="collapse" href="#collapse-bd15dacbc6f3cdc76f89eff662d3789f"
-        aria-expanded="false"
-      >
-        个人Blog
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E4%B8%AA%E4%BA%BABlog/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-bd15dacbc6f3cdc76f89eff662d3789f" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-bd15dacbc6f3cdc76f89eff662d3789f">
-    
-    
-      
-      
-        <a href="/2024/11/04/Markdow%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8Chexo%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD/" class="list-group-item list-group-item-action">
-          <span class="category-post">Markdown文档的基础使用和hexo常用的功能</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/" class="list-group-item list-group-item-action">
-          <span class="category-post">利用Github+Hexo打造自己的永久Blog</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-0d635f7d6344865764bab31ae16574d7" role="tab" data-toggle="collapse" href="#collapse-0d635f7d6344865764bab31ae16574d7"
-        aria-expanded="false"
-      >
-        内网穿透
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-0d635f7d6344865764bab31ae16574d7" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-0d635f7d6344865764bab31ae16574d7">
-    
-    
-      
-      
-        <a href="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/" class="list-group-item list-group-item-action">
-          <span class="category-post">windows和linux frp自动管理配置</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-280c7b893c22729caea29d494af73955" role="tab" data-toggle="collapse" href="#collapse-280c7b893c22729caea29d494af73955"
-        aria-expanded="false"
-      >
-        技术研究
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-280c7b893c22729caea29d494af73955" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-280c7b893c22729caea29d494af73955">
-    
-    
-      
-      
-        <a href="/2024/11/07/%E7%BD%91%E9%A1%B5%E8%B0%83%E7%94%A8exe/" class="list-group-item list-group-item-action">
-          <span class="category-post">网页调用exe</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/">管理规范</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">版本管理</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/07/%E7%BD%91%E9%A1%B5%E8%B0%83%E7%94%A8exe/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网页调用exe</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/06/Git%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/">
+                        <span class="hidden-mobile">Git代码管理规范</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -477,9 +425,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 

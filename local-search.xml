@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>网页调用exe</title>
+    <link href="/2024/11/07/%E7%BD%91%E9%A1%B5%E8%B0%83%E7%94%A8exe/"/>
+    <url>/2024/11/07/%E7%BD%91%E9%A1%B5%E8%B0%83%E7%94%A8exe/</url>
+    
+    <content type="html"><![CDATA[<h2 id="会有这个功能的原因"><a href="#会有这个功能的原因" class="headerlink" title="会有这个功能的原因"></a>会有这个功能的原因</h2><blockquote><p>有些医院的电子病历没有网页端,我们的产品又是一个BS架构产品.奈何公司话语权又不如医院,就有了这个网页调用exe的猜想.<br>之后在网上查阅了一些资料,加之百度网盘从网页吊起百度网盘的客户端,这个事情就提上了日程.<br>这个事情做之前还得确认两点:</p><ol><li>需要修改注册表,这个事情只能由医院信息科干,每有一个医院员工要用,就要有人把维护这个事做起来.</li><li>在所有需要用我们系统的员工的电脑上,医院的电子病历系统必须装在统一位置</li></ol></blockquote><h2 id="修改注册表"><a href="#修改注册表" class="headerlink" title="修改注册表"></a>修改注册表</h2><figure class="highlight nsis"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs nsis">Windows Registry Editor Version <span class="hljs-number">5.00</span><br><br>[<span class="hljs-params">HKEY_CLASSES_ROOT</span>\EMRCallEXE]<br>@=<span class="hljs-string">&quot;&quot;</span><br><span class="hljs-string">&quot;URL Protocol&quot;</span>=<span class="hljs-string">&quot;&quot;</span><br><br>[<span class="hljs-params">HKEY_CLASSES_ROOT</span>\EMRCallEXE\DefaultIcon]<br>@=<span class="hljs-string">&quot;D:\\\\电子病历\\\\TPEMRWS.exe\&quot;</span> <span class="hljs-comment">#电子病历exe位置</span><br><br>[<span class="hljs-params">HKEY_CLASSES_ROOT</span>\EMRCallEXE\Shell]<br><br>[<span class="hljs-params">HKEY_CLASSES_ROOT</span>\EMRCallEXE\Shell\<span class="hljs-literal">Open</span>]<br><br>[<span class="hljs-params">HKEY_CLASSES_ROOT</span>\EMRCallEXE\Shell\<span class="hljs-literal">Open</span>\Command]<br>@=<span class="hljs-string">&quot;\&quot;</span>D:\\电子病历\\start.bat\<span class="hljs-string">&quot; \&quot;</span>%<span class="hljs-number">1</span>\<span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment">#这个是调用bat地址,并且传递了一个参数</span><br></code></pre></div></td></tr></table></figure><p>上面的代码保存成.rge文件,以管理员权限运行</p><h2 id="编写bat脚本"><a href="#编写bat脚本" class="headerlink" title="编写bat脚本"></a>编写bat脚本</h2><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">@echo off<br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;%~1&quot;</span>==<span class="hljs-string">&quot;&quot;</span> (<br>    echo ERROR: No executable file specified.<br>    pause<br>    <span class="hljs-keyword">exit</span> /b <span class="hljs-number">1</span><br>)<br>set decoded_path=%~<span class="hljs-number">1</span><br>set exe_file=<br><span class="hljs-keyword">for</span> /f <span class="hljs-string">&quot;tokens=2 delims=:&quot;</span> %%i <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;%decoded_path%&quot;</span>) <span class="hljs-keyword">do</span> set <span class="hljs-string">&quot;exe_file=%%i&quot;</span><br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;%exe_file%&quot;</span>==<span class="hljs-string">&quot;&quot;</span> (<br>    echo ERROR: Invalid filepath.<br>    pause<br>    <span class="hljs-keyword">exit</span> /b <span class="hljs-number">1</span><br>)<br>start D:\电子病历\EMRFILESHOW.exe <span class="hljs-string">&quot;%exe_file%&quot;</span><br></code></pre></div></td></tr></table></figure><p>保存成.bat文件,并放到<code>D:\\电子病历\\start.bat</code>这个地址</p><h2 id="调用链接"><a href="#调用链接" class="headerlink" title="调用链接"></a>调用链接</h2><p><code>emrcallexe:param</code><br>调用不起来可以考虑<br><code>emrcallexe://param</code></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术研究</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>web</tag>
+      
+      <tag>window</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>版本管理规范</title>
+    <link href="/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/"/>
+    <url>/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-版本号规范"><a href="#1-版本号规范" class="headerlink" title="1. 版本号规范"></a>1. 版本号规范</h2><h3 id="1-1-规则"><a href="#1-1-规则" class="headerlink" title="1.1 规则"></a>1.1 规则</h3><ul><li>字母、数字、小数点</li><li>共3位，小数点区隔：版本升级.特性升级.修订补丁</li><li>开发版基于稳定版发布；开发完成后，合并到一个新的稳定版版本号中<blockquote><p>例如：稳定版1.0.0，开发版前端1.0.5-dev，后端1.0.9-dev，开发完成后，合并到1.1.0-stable</p></blockquote></li></ul><h3 id="1-2-定义"><a href="#1-2-定义" class="headerlink" title="1.2 定义"></a>1.2 定义</h3><ul><li>版本升级<blockquote><p>大版本迭代，例如：增加新的业务场景、业务流程、功能模块<br>特点：功能模块固定，部署维护形成SOP（标准作业程序）</p></blockquote></li><li>特性升级<blockquote><p>已有功能模块迭代，例如：统计模块增加统计页面、新增驾驶舱进行统计数据的可视化展示等<br>特点：可以在现有版本上平滑升级，不影响现有业务流程</p></blockquote></li><li>修订补丁<blockquote><p>Bug修正，例如：页面展示错误、接口数据错误等<br>特点：当前版本的Bug缺陷</p></blockquote></li></ul><h2 id="2-后缀规范"><a href="#2-后缀规范" class="headerlink" title="2. 后缀规范"></a>2. 后缀规范</h2><h3 id="2-1-规则"><a href="#2-1-规则" class="headerlink" title="2.1 规则"></a>2.1 规则</h3><ul><li>版本号后面横线加字母</li><li>后缀：稳定版：stable，开发版：dev，定制版：custom-医院CODE</li></ul><h3 id="2-2-定义"><a href="#2-2-定义" class="headerlink" title="2.2 定义"></a>2.2 定义</h3><ul><li>稳定版-stable<blockquote><p>测试通过的，可以大范围更新</p></blockquote></li><li>开发版-dev<blockquote><p>新的特性在某家医院实验中，例如章丘</p></blockquote></li><li>定制版-custom-医院CODE<blockquote><p>医院特殊需求</p></blockquote></li></ul><h2 id="3-版本迭代流程"><a href="#3-版本迭代流程" class="headerlink" title="3. 版本迭代流程"></a>3. 版本迭代流程</h2><p><img src="/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/manager1.jpg" alt="m"></p><h2 id="研发流程"><a href="#研发流程" class="headerlink" title="研发流程"></a>研发流程</h2><p><img src="/2024/11/07/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/manager2.png" alt="mm"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>管理规范</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>版本管理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Git代码管理规范</title>
     <link href="/2024/11/06/Git%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/"/>
     <url>/2024/11/06/Git%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/</url>
@@ -13,7 +65,7 @@
     
     <categories>
       
-      <category>软件开发</category>
+      <category>管理规范</category>
       
     </categories>
     
@@ -21,6 +73,8 @@
     <tags>
       
       <tag>git</tag>
+      
+      <tag>管理规范</tag>
       
     </tags>
     
@@ -126,9 +180,9 @@
     
     <tags>
       
-      <tag>hexo</tag>
-      
       <tag>markdown</tag>
+      
+      <tag>hexo</tag>
       
     </tags>
     
@@ -182,11 +236,11 @@
       
       <tag>git</tag>
       
+      <tag>hexo</tag>
+      
       <tag>VSCode</tag>
       
       <tag>node.js</tag>
-      
-      <tag>hexo</tag>
       
     </tags>
     
