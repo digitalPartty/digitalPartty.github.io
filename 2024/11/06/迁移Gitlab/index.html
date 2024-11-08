@@ -304,6 +304,43 @@
             </div>
 
             
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://vercel-c9ob2rs82-digitalparttys-projects.vercel.app/",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: [],
+          emojiCDN: "",
+          emojiMaps: {},
+          anonymous: null,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
           </article>
         </div>
       </div>
