@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      426 字
+      949 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      11
        分钟
     </span>
   
@@ -236,7 +236,37 @@
             <h1 style="display: none">windows和linux frp自动管理配置</h1>
             
             <div class="markdown-body">
-              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>frp 是一个可用于内网穿透的高性能的反向代理开源应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。<br><img src="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/frp1.PNG" srcset="/img/loading.gif" lazyload><br>frp 使用Go 语言开发，得益于此，我们使用非常简单，只需要添加执行权限就可以运行了。如果需要将它运行在后台，作为服务的运行的话，就需要我们对系统有一定的了解了，下面我简单介绍一下，如何将 frp安装为系统服务<br>注意：在安装服务之前，请确保你的 frp 已经参照<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">官方文档</a>进行了正确的配置。<br><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">frp下载地址</a></p>
+              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>frp 是一个可用于内网穿透的高性能的反向代理开源应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。<br><img src="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/frp1.PNG" srcset="/img/loading.gif" lazyload><br>frp 使用Go 语言开发，得益于此，我们使用非常简单，只需要添加执行权限就可以运行了。如果需要将它运行在后台，作为服务的运行的话，就需要我们对系统有一定的了解了，下面我简单介绍一下，如何将 frp安装为系统服务<br>注意：在安装服务之前，请确保你的 frp 已经参照<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">官方文档</a>进行了正确的配置。<br><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">frp下载地址</a></p>
+</blockquote>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><blockquote>
+<p>FRP以其轻量级、高性能、易用性而受到用户青睐。它采用Go语言编写，支持跨平台部署，包括Linux、Windows等操作系统。FRP的配置简单直观，使用TOML格式的配置文件，易于理解和编辑。此外，FRP还提供了Dashboard功能，方便用户通过Web界面监控和管理服务状态。</p>
+</blockquote>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p><img src="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/frp1.PNG" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>内网穿透</strong>：FRP可以将内网服务映射到公网上，实现远程访问。</li>
+<li><strong>协议支持</strong>：支持TCP、UDP、HTTP、HTTPS等协议，适用于不同服务的需求。</li>
+<li><strong>安全性</strong>：提供数据加密、身份验证等安全机制，保护数据传输安全。</li>
+<li><strong>负载均衡</strong>：支持多节点负载均衡，提高服务的可用性和稳定性。</li>
+<li><strong>插件系统</strong>：允许用户通过插件扩展FRP的功能。</li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="frps-ini"><a href="#frps-ini" class="headerlink" title="frps.ini"></a>frps.ini</h3><figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_port</span> = <span class="hljs-number">7000</span> <span class="hljs-comment"># 绑定的端口,服务端需要防火墙放行</span><br><span class="hljs-attr">authentication_method</span> = token <span class="hljs-comment"># 名字</span><br><span class="hljs-attr">authenticate_new_work_conns</span> = <span class="hljs-literal">true</span> <span class="hljs-comment"># 打开使用密码登录</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">53</span>bdb2b9360a9c3c6dffa9999900000 <span class="hljs-comment"># 密钥 可以自己定义</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="frpc-ini"><a href="#frpc-ini" class="headerlink" title="frpc.ini"></a>frpc.ini</h3><figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_addr</span> = <span class="hljs-number">98.0</span>.<span class="hljs-number">0.0</span> <span class="hljs-comment"># 云服务器ip</span><br><span class="hljs-attr">server_port</span> = <span class="hljs-number">7000</span> <span class="hljs-comment"># frps.ini的server_port一致</span><br><br><span class="hljs-section">[ssh1]</span> <br><span class="hljs-attr">type</span> = tcp<br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">15687</span> <span class="hljs-comment"># 内网想要映射的端口1</span><br><span class="hljs-attr">remote_port</span> = <span class="hljs-number">6000</span> <span class="hljs-comment"># 映射到云服务的端口1</span><br><br><span class="hljs-section">[ssh2]</span> <span class="hljs-comment">#可以配置多个,注意不要重名</span><br><span class="hljs-attr">type</span> = tcp<br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">15688</span> <span class="hljs-comment"># 内网想要映射的端口2</span><br><span class="hljs-attr">remote_port</span> = <span class="hljs-number">6001</span> <span class="hljs-comment"># 映射到云服务的端口2</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="云服务器防火墙配置"><a href="#云服务器防火墙配置" class="headerlink" title="云服务器防火墙配置"></a>云服务器防火墙配置</h3><blockquote>
+<p>需要打开的端口</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">7000</span>,<span class="hljs-number">6000</span>,<span class="hljs-number">6001</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="客户端防火墙配置"><a href="#客户端防火墙配置" class="headerlink" title="客户端防火墙配置"></a>客户端防火墙配置</h3><blockquote>
+<p>需要打开的端口</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">15687</span>,<span class="hljs-number">15688</span><br></code></pre></div></td></tr></table></figure>
+<h2 id="安装指南"><a href="#安装指南" class="headerlink" title="安装指南"></a>安装指南</h2><ul>
+<li><strong>下载</strong> ：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">frp下载地址</a></li>
+<li><strong>解压</strong>：解压到对应的文件夹</li>
+<li><strong>配置</strong>：编辑<code>frps.ini</code>（服务端配置文件）和<code>frpc.ini</code>（客户端配置文件），设置服务端和客户端的通信地址、端口、令牌等信息。</li>
+<li><strong>启动</strong>：在服务端执行<code>./frps -c ./frps.ini</code>启动服务端，在客户端执行<code>./frpc -c ./frpc.ini</code>启动客户端。</li>
+<li><strong>验证</strong>：通过访问公网服务器的指定端口或配置的域名来测试内网服务是否成功暴露。</li>
+</ul>
 <h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><p>若要将 frp 安装为 windows 的服务，我们需要借助第三方的开源工具 nssm 来实现，以下是操作步骤：<br><a target="_blank" rel="noopener" href="https://nssm.cc/download">nssm下载地址</a></p>
 <ol>
 <li>以管理员方式运行 cmd, 直接输入 d 按回车 切换到d盘</li>
@@ -245,7 +275,7 @@
 <li>点击 install service 后，cmd会提示：Service “frpc” installed successfully! 表示安装完成<br>以上就是将frpc 安装为windows服务的操作步骤了，如果是 frps 也是同样的操作，就不再赘述了。</li>
 </ol>
 <h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>把以下shell脚本增加到宝塔定时任务中定时重启就ok了(patch为frp解压目录)</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>frpc_pid=`ps -ef | grep frpc.ini | grep color -v | grep grep -v | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>`<br><span class="hljs-comment">#echo $frpc_pid</span><br><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$frpc_pid</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">kill</span> -9 <span class="hljs-variable">$frpc_pid</span><br><span class="hljs-keyword">fi</span><br>path=/www/server/frp<br><span class="hljs-built_in">nohup</span> <span class="hljs-variable">$path</span>/frpc -c <span class="hljs-variable">$path</span>/frpc.ini &gt; <span class="hljs-variable">$path</span>/frpc.log 2&gt;&amp;1 &amp;<br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>frpc_pid=`ps -ef | grep frpc.ini | grep color -v | grep grep -v | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>`<br><span class="hljs-comment">#echo $frpc_pid</span><br><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$frpc_pid</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">kill</span> -9 <span class="hljs-variable">$frpc_pid</span><br><span class="hljs-keyword">fi</span><br>path=/www/server/frp<br><span class="hljs-built_in">nohup</span> <span class="hljs-variable">$path</span>/frpc -c <span class="hljs-variable">$path</span>/frpc.ini &gt; <span class="hljs-variable">$path</span>/frpc.log 2&gt;&amp;1 &amp;<br></code></pre></div></td></tr></table></figure>
             </div>
             <hr>
             <div>
