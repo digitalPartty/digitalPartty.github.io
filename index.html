@@ -182,6 +182,93 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2024/12/02/Ubuntu24-04%E8%A7%A3%E5%86%B3%E5%90%91%E6%97%A5%E8%91%B5%E5%AE%89%E8%A3%85libgconf-2-4%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98/">Ubuntu24.04解决向日葵安装libgconf-2-4依赖问题</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/12/02/Ubuntu24-04%E8%A7%A3%E5%86%B3%E5%90%91%E6%97%A5%E8%91%B5%E5%AE%89%E8%A3%85libgconf-2-4%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98/">
+          
+          
+            
+          
+          最近在加装的ssd上加装了个Ubuntu，当然要装最新的长期支持稳定版啦，24.04.1，却发现常用的向日葵不好安装成功，即使是官方的说明，应该是用这个版本系统的人还不多。找到了一个帅哥的解决方案，是可行的但是文章是直接添加source源的方式，我担心后续会影响稳定性，毕竟ubuntu本身的稳定性不那么好，有人认为它是Debian+bugs，当然观点有点偏激啦！
+我是手动解决依赖的，这里记录下，方
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-12-02 13:03" pubdate>
+              2024-12-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/11/19/nginx%E9%85%8D%E7%BD%AE%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/">nginx配置端口配置</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/11/19/nginx%E9%85%8D%E7%BD%AE%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/">
+          
+          
+            
+          
+          安装nginx
+使用yum命令安装nginx1yum -y install nginx
+安装完成后的目录123456789101112131415/etc/nginx/                  # 主配置文件目录├── conf.d/                  # 子配置文件目录│   └── default.conf         # 默认站点配置文件├── mime.typ
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-19 15:07" pubdate>
+              2024-11-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/nginx/">nginx</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/RabbitMQ/">RabbitMQ</a>
+            
+              <a href="/tags/nginx/">nginx</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2024/11/18/Windows%E7%94%A8docker%E5%AE%89%E8%A3%85centos/">Windows用docker安装centos</a>
       </h1>
 
@@ -625,142 +712,6 @@ develop 为开发环境分支，始终保持最新完成以及bug修复后的代
               <a href="/tags/CentOS7/">CentOS7</a>
             
               <a href="/tags/git/">git</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/">Centos7安装RabbitMQ3.8.5</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/">
-          
-          
-            
-          
-          系统环境
-Centos7-64位
-Erlang-OTP 23
-RabbitMQ-3.8.5
-
-安装Erlangerlang和rabbitmq的版本对应关系版本对应网址
-通过rpm安装erlang
-完成erlang的前置条件配置1curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | s
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-05 15:16" pubdate>
-              2024-11-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/RabbitMQ/">RabbitMQ</a>
-            
-              <a href="/tags/CentOS7/">CentOS7</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/11/04/Markdow%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8Chexo%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD/">Markdown文档的基础使用和hexo常用的功能</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/11/04/Markdow%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8Chexo%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD/">
-          
-          
-            
-          
-          Markdown文档的基础使用标题语法要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题(例如：### My Header)。
-
-
-
-写法
-样式
-
-
-
-# 一级标题
-一级标题
-
-
-## 二级标题
-一级标题
-
-
-### 三级标题
-一级标题
-
-
-#### 四级标题
-一级标题
-
-
-##### 五级标题
-一级标题
-
-
-###### 六级标
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-04 16:24" pubdate>
-              2024-11-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%B8%AA%E4%BA%BABlog/">个人Blog</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/markdown/">markdown</a>
-            
-              <a href="/tags/hexo/">hexo</a>
             
           </div>
         
