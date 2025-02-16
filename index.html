@@ -191,7 +191,12 @@
           
             
           
-          
+          安装命令1. 拉取 MySQL 镜像docker pull mysql:8
+2. 运行mysql镜像并设置环境变量1docker run --name my_mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -d -p 3306:3306 mysql:8
+
+参数详解:
+
+–name my_mysql：给容器命名为 my_mysql，方便管理。-e MY
         </a>
       </p>
 
@@ -205,6 +210,20 @@
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/docker/">docker</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/mysql/">mysql</a>
+            
+          </div>
         
       </div>
     </article>
