@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>迁移Gitlab - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dXGzELRV6co0uMbi59aD9bae-MdYXbMMI","app_key":"po0TJ5rRhji7tCPUfeZhwluZ","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>数码派对的Bolg</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="迁移Gitlab">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-11-06 14:32" pubdate>
+        November 6, 2024 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      441 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">迁移Gitlab</h1>
+            
+            <div class="markdown-body">
+              <h2 id="服务器信息"><a href="#服务器信息" class="headerlink" title="服务器信息"></a>服务器信息</h2><p>源服务器gitlab为39.0.0.0:8083<br>目标服务器gitlab为47.0.0.0:8083<br>要整个GitLab库迁移，可以按照以下步骤进行操作：</p>
+<h3 id="1-在源GitLab服务器上创建一个备份文件："><a href="#1-在源GitLab服务器上创建一个备份文件：" class="headerlink" title="1. 在源GitLab服务器上创建一个备份文件："></a>1. 在源GitLab服务器上创建一个备份文件：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> gitlab-rake gitlab:backup:create<br></code></pre></div></td></tr></table></figure>
+<p>生成的备份文件为举例：&#x2F;var&#x2F;opt&#x2F;gitlab&#x2F;backups&#x2F;1702002765_2023_12_08_11.4.8_gitlab_backup.tar</p>
+<h3 id="2-将备份文件下载到目标GitLab服务器："><a href="#2-将备份文件下载到目标GitLab服务器：" class="headerlink" title="2. 将备份文件下载到目标GitLab服务器："></a>2. 将备份文件下载到目标GitLab服务器：</h3><figure class="highlight elixir"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs elixir">scp root<span class="hljs-variable">@source_server</span><span class="hljs-symbol">:/var/opt/gitlab/backups/&lt;backup_file&gt;</span> /var/opt/gitlab/backups/<br></code></pre></div></td></tr></table></figure>
+<p>或者   （目标服务器的22端口换为18888的服务器时）举例如下：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs elixir">scp -P <span class="hljs-number">18888</span> /var/opt/gitlab/backups/<span class="hljs-number">1702002765_2023_12_08_11.4</span>.<span class="hljs-number">8_</span>gitlab_backup.tar root<span class="hljs-variable">@47</span>.<span class="hljs-number">0.0</span>.<span class="hljs-number">0</span><span class="hljs-symbol">:/var/opt/gitlab/backups/</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="3-在目标GitLab服务器上还原备份文件："><a href="#3-在目标GitLab服务器上还原备份文件：" class="headerlink" title="3. 在目标GitLab服务器上还原备份文件："></a>3. 在目标GitLab服务器上还原备份文件：</h3><figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">sudo</span> gitlab-rake gitlab:backup:restore BACKUP=<span class="hljs-number">1702002765</span>_2023_12_08_11.<span class="hljs-number">4</span>.<span class="hljs-number">8</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="4-重启GitLab："><a href="#4-重启GitLab：" class="headerlink" title="4. 重启GitLab："></a>4. 重启GitLab：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> gitlab-ctl restart<br></code></pre></div></td></tr></table></figure>
+<p>然后就完成了整个GitLab库的迁移。需要注意的是，在迁移之前应该确保目标GitLab服务器的版本和源GitLab服务器的版本相同或更高。另外，还需要确保在迁移期间没有对源GitLab服务器进行更改。</p>
+<h2 id="问题情况处理"><a href="#问题情况处理" class="headerlink" title="问题情况处理"></a>问题情况处理</h2><h3 id="1-安装过程中问题"><a href="#1-安装过程中问题" class="headerlink" title="1. 安装过程中问题"></a>1. 安装过程中问题</h3><blockquote>
+<p>安装github过程中即便报错了，尽量也不要退出否则容易造成后期没法再安装的问题，就只能卸载重装</p>
+</blockquote>
+<h3 id="2-本次安装一直报postg"><a href="#2-本次安装一直报postg" class="headerlink" title="2. 本次安装一直报postg"></a>2. 本次安装一直报postg</h3><h4 id="1-登录postgresql"><a href="#1-登录postgresql" class="headerlink" title="1. 登录postgresql"></a>1. 登录postgresql</h4><figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">psql</span> -h <span class="hljs-number">127.0.0.1</span> -p <span class="hljs-number">5432</span> -U  gitlabhq_production<br></code></pre></div></td></tr></table></figure>
+<h4 id="2-输入你的密码"><a href="#2-输入你的密码" class="headerlink" title="2. 输入你的密码"></a>2. 输入你的密码</h4><h4 id="3-建表-并退出"><a href="#3-建表-并退出" class="headerlink" title="3. 建表 并退出"></a>3. 建表 并退出</h4><figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> gitlabhq_production;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">EXTENSION</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> &quot;pg_trgm&quot;;<br>\q<br></code></pre></div></td></tr></table></figure>
+<h4 id="4-再配置一次"><a href="#4-再配置一次" class="headerlink" title="4. 再配置一次"></a>4. 再配置一次</h4><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> gitlab-ctl reconfigure<br></code></pre></div></td></tr></table></figure>
+<h2 id="卸载gitlub"><a href="#卸载gitlub" class="headerlink" title="卸载gitlub"></a>卸载gitlub</h2><h3 id="1-停止-GitLab-服务"><a href="#1-停止-GitLab-服务" class="headerlink" title="1. 停止 GitLab 服务:"></a>1. 停止 GitLab 服务:</h3><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">sudo <span class="hljs-regexp">/opt/gi</span>tlab<span class="hljs-regexp">/bin/gi</span>tlab-ctl stop<br></code></pre></div></td></tr></table></figure>
+<h3 id="2-卸载-GitLab"><a href="#2-卸载-GitLab" class="headerlink" title="2. 卸载 GitLab:"></a>2. 卸载 GitLab:</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> rpm -e gitlab-ce<br></code></pre></div></td></tr></table></figure>
+<h3 id="3-删除-GitLab-相关数据"><a href="#3-删除-GitLab-相关数据" class="headerlink" title="3. 删除 GitLab 相关数据:"></a>3. 删除 GitLab 相关数据:</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /var/opt/gitlab<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /opt/gitlab<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /etc/gitlab<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /var/log/gitlab<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-删除-GitLab-用户和组"><a href="#4-删除-GitLab-用户和组" class="headerlink" title="4. 删除 GitLab 用户和组:"></a>4. 删除 GitLab 用户和组:</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> userdel git<br><span class="hljs-built_in">sudo</span> groupdel git<br></code></pre></div></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CentOS7/">CentOS7</a>
+                    
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/06/Git%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Git代码管理规范</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/">
+                        <span class="hidden-mobile">安装Gitlab</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://vercel-c9ob2rs82-digitalparttys-projects.vercel.app/",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: [],
+          emojiCDN: "",
+          emojiMaps: {},
+          anonymous: null,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>windows和linux frp自动管理配置 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dXGzELRV6co0uMbi59aD9bae-MdYXbMMI","app_key":"po0TJ5rRhji7tCPUfeZhwluZ","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>数码派对的Bolg</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="windows和linux frp自动管理配置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-11-03 12:27" pubdate>
+        November 3, 2024 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      952 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">windows和linux frp自动管理配置</h1>
+            
+            <div class="markdown-body">
+              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>frp 是一个可用于内网穿透的高性能的反向代理开源应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。<br>frp 使用Go 语言开发，得益于此，我们使用非常简单，只需要添加执行权限就可以运行了。如果需要将它运行在后台，作为服务的运行的话，就需要我们对系统有一定的了解了，下面我简单介绍一下，如何将 frp安装为系统服务<br>注意：在安装服务之前，请确保你的 frp 已经参照<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">官方文档</a>进行了正确的配置。<br><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">frp下载地址</a></p>
+</blockquote>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><blockquote>
+<p>FRP以其轻量级、高性能、易用性而受到用户青睐。它采用Go语言编写，支持跨平台部署，包括Linux、Windows等操作系统。FRP的配置简单直观，使用TOML格式的配置文件，易于理解和编辑。此外，FRP还提供了Dashboard功能，方便用户通过Web界面监控和管理服务状态。</p>
+</blockquote>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p><img src="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/frp1.PNG" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>内网穿透</strong>：FRP可以将内网服务映射到公网上，实现远程访问。</li>
+<li><strong>协议支持</strong>：支持TCP、UDP、HTTP、HTTPS等协议，适用于不同服务的需求。</li>
+<li><strong>安全性</strong>：提供数据加密、身份验证等安全机制，保护数据传输安全。</li>
+<li><strong>负载均衡</strong>：支持多节点负载均衡，提高服务的可用性和稳定性。</li>
+<li><strong>插件系统</strong>：允许用户通过插件扩展FRP的功能。</li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="frps-ini"><a href="#frps-ini" class="headerlink" title="frps.ini"></a>frps.ini</h3><figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_port</span> = <span class="hljs-number">7000</span> <span class="hljs-comment"># 绑定的端口,服务端需要防火墙放行</span><br><span class="hljs-attr">authentication_method</span> = token <span class="hljs-comment"># 名字</span><br><span class="hljs-attr">authenticate_new_work_conns</span> = <span class="hljs-literal">true</span> <span class="hljs-comment"># 打开使用密码登录</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">53</span>bdb2b9360a9c3c6dffa9999900000 <span class="hljs-comment"># 密钥 可以自己定义</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="frpc-ini"><a href="#frpc-ini" class="headerlink" title="frpc.ini"></a>frpc.ini</h3><figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_addr</span> = <span class="hljs-number">98.0</span>.<span class="hljs-number">0.0</span> <span class="hljs-comment"># 云服务器ip</span><br><span class="hljs-attr">server_port</span> = <span class="hljs-number">7000</span> <span class="hljs-comment"># frps.ini的server_port一致</span><br><span class="hljs-attr">authentication_method</span> = token<br><span class="hljs-attr">authenticate_new_work_conns</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">53</span>bdb2b9360a9c3c6dffa9999900000<br><span class="hljs-section">[ssh1]</span> <br><span class="hljs-attr">type</span> = tcp<br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">15687</span> <span class="hljs-comment"># 内网想要映射的端口1</span><br><span class="hljs-attr">remote_port</span> = <span class="hljs-number">6000</span> <span class="hljs-comment"># 映射到云服务的端口1</span><br><br><span class="hljs-section">[ssh2]</span> <span class="hljs-comment">#可以配置多个,注意不要重名</span><br><span class="hljs-attr">type</span> = tcp<br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">15688</span> <span class="hljs-comment"># 内网想要映射的端口2</span><br><span class="hljs-attr">remote_port</span> = <span class="hljs-number">6001</span> <span class="hljs-comment"># 映射到云服务的端口2</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="云服务器防火墙配置"><a href="#云服务器防火墙配置" class="headerlink" title="云服务器防火墙配置"></a>云服务器防火墙配置</h3><blockquote>
+<p>需要打开的端口</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">7000</span>,<span class="hljs-number">6000</span>,<span class="hljs-number">6001</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="客户端防火墙配置"><a href="#客户端防火墙配置" class="headerlink" title="客户端防火墙配置"></a>客户端防火墙配置</h3><blockquote>
+<p>需要打开的端口</p>
+</blockquote>
+<figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">15687</span>,<span class="hljs-number">15688</span><br></code></pre></div></td></tr></table></figure>
+<h2 id="安装指南"><a href="#安装指南" class="headerlink" title="安装指南"></a>安装指南</h2><ul>
+<li><strong>下载</strong> ：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">frp下载地址</a></li>
+<li><strong>解压</strong>：解压到对应的文件夹</li>
+<li><strong>配置</strong>：编辑<code>frps.ini</code>（服务端配置文件）和<code>frpc.ini</code>（客户端配置文件），设置服务端和客户端的通信地址、端口、令牌等信息。</li>
+<li><strong>启动</strong>：在服务端执行<code>./frps -c ./frps.ini</code>启动服务端，在客户端执行<code>./frpc -c ./frpc.ini</code>启动客户端。</li>
+<li><strong>验证</strong>：通过访问公网服务器的指定端口或配置的域名来测试内网服务是否成功暴露。</li>
+</ul>
+<h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><p>若要将 frp 安装为 windows 的服务，我们需要借助第三方的开源工具 nssm 来实现，以下是操作步骤：<br><a target="_blank" rel="noopener" href="https://nssm.cc/download">nssm下载地址</a></p>
+<ol>
+<li>以管理员方式运行 cmd, 直接输入 d 按回车 切换到d盘</li>
+<li>在cmd中运行 命令.\nssm install ，此时会弹出 Gui</li>
+<li>GUI 中选择你的frp路径，以及在 Arguments 中 正确的填入 -c 完整配置文件路径，如图：<br><img src="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/frp2.png" srcset="/img/loading.gif" lazyload alt="frp2"></li>
+<li>点击 install service 后，cmd会提示：Service “frpc” installed successfully! 表示安装完成<br>以上就是将frpc 安装为windows服务的操作步骤了，如果是 frps 也是同样的操作，就不再赘述了。</li>
+</ol>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>把以下shell脚本增加到宝塔定时任务中定时重启就ok了(patch为frp解压目录)</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>frpc_pid=`ps -ef | grep frpc.ini | grep color -v | grep grep -v | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>`<br><span class="hljs-comment">#echo $frpc_pid</span><br><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$frpc_pid</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">kill</span> -9 <span class="hljs-variable">$frpc_pid</span><br><span class="hljs-keyword">fi</span><br>path=/www/server/frp<br><span class="hljs-built_in">nohup</span> <span class="hljs-variable">$path</span>/frpc -c <span class="hljs-variable">$path</span>/frpc.ini &gt; <span class="hljs-variable">$path</span>/frpc.log 2&gt;&amp;1 &amp;<br></code></pre></div></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/go/">go</a>
+                    
+                      <a class="hover-with-bg" href="/tags/nssm/">nssm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/04/Markdow%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8Chexo%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Markdown文档的基础使用和hexo常用的功能</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/">
+                        <span class="hidden-mobile">利用Github+Hexo打造自己的永久Blog</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://vercel-c9ob2rs82-digitalparttys-projects.vercel.app/",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: [],
+          emojiCDN: "",
+          emojiMaps: {},
+          anonymous: null,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>利用Github+Hexo打造自己的永久Blog - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dXGzELRV6co0uMbi59aD9bae-MdYXbMMI","app_key":"po0TJ5rRhji7tCPUfeZhwluZ","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>数码派对的Bolg</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="利用Github+Hexo打造自己的永久Blog">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-11-02 10:18" pubdate>
+        November 2, 2024 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">利用Github+Hexo打造自己的永久Blog</h1>
+            
+            <div class="markdown-body">
+              <h1 id="注册GitHub"><a href="#注册GitHub" class="headerlink" title="注册GitHub"></a>注册GitHub</h1><h2 id="GitHub官网"><a href="#GitHub官网" class="headerlink" title="GitHub官网"></a><a target="_blank" rel="noopener" href="https://github.com/">GitHub官网</a></h2><ol>
+<li>进入官网,点击sign up 进行注册<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github1.jpeg" srcset="/img/loading.gif" lazyload alt="图片"></li>
+<li>输入自己的邮箱<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github2.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>tips:有时需要科学上网,自行解决</li>
+</ol>
+<h1 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h1><p> Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
+<h2 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h2><p>官网下载页面：<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Gitdownload</a><br>我选择的是Win 64位的安装版本</p>
+<h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h2><p>双击安装包开始安装，一路点击 Next 即可，安装完成后鼠标右键会有 Git Bash Here，这是Git的命令行，说明安装成功<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github3.webp" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github4.webp" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h2 id="3-设置用户名和邮箱"><a href="#3-设置用户名和邮箱" class="headerlink" title="3. 设置用户名和邮箱"></a>3. 设置用户名和邮箱</h2><p>因为 Git 是分布式版本控制系统，所以需要设置用户名和邮箱作为一个标识，在命令行输入如下：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs autoit">git config --<span class="hljs-keyword">global</span> user.name <span class="hljs-string">&quot;user_name&quot;</span> <span class="hljs-meta"># user_name 填入 GitHub 用户名</span><br>git config --<span class="hljs-keyword">global</span> user.email <span class="hljs-string">&quot;user_email&quot;</span> <span class="hljs-meta"># user_email 填入 GitHub 注册的邮箱</span><br></code></pre></div></td></tr></table></figure>
+<h1 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h1><p>VSCode 是一个非常好用的文本编辑器，之后编辑博客的相关配置文件以及后面的写博客都需要用到这个编辑器。</p>
+<p>安装过程很简单，直接进入 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode官网</a>  3，然后安装的时候建议所有步骤都直接点下一步</p>
+<h1 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h1><p>进入 <a target="_blank" rel="noopener" href="https://nodejs.org/en">Node 官网</a> 下载最新稳定版本<br>安装直接全点下一步<br>安装 Node.js 会包含环境变量以及 npm 的安装，安装后，可以在命令行输入如下命令检测 Node.js 是否安装成功：<br>第一个命令：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">node</span> <span class="hljs-title">-v</span><br></code></pre></div></td></tr></table></figure>
+<p>这个命令，在 nodejs 安装成功的情况下会显示 nodejs 的版本号。</p>
+<p>第二个命令：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> -v<br></code></pre></div></td></tr></table></figure>
+<p>这个命令，在 nodejs 安装成功的情况下会显示 npm 的版本号。</p>
+<h2 id="换npm源"><a href="#换npm源" class="headerlink" title="换npm源"></a>换npm源</h2><p>npm是node.js自带的一个工具</p>
+<p>为什么要换源 因为自带的我们国内可能无法正常使用</p>
+<p>这一点有好多人没讲</p>
+<p>真的很坑 所以我给大家讲一下</p>
+<p>下面我介绍下如何使用淘宝镜像源。</p>
+<h3 id="1-打开git命令行"><a href="#1-打开git命令行" class="headerlink" title="1. 打开git命令行"></a>1. 打开git命令行</h3><p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github5.webp" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="2-命令设置"><a href="#2-命令设置" class="headerlink" title="2. 命令设置"></a>2. 命令设置</h3><figure class="highlight tcl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs tcl"><span class="hljs-comment">#最新地址 淘宝 NPM 镜像站喊你切换新域名啦!</span><br>npm config <span class="hljs-keyword">set</span> <span class="hljs-keyword">registry</span> https://<span class="hljs-keyword">registry</span>.npmmirror.com<br></code></pre></div></td></tr></table></figure>
+<h3 id="3-查看镜像使用状态"><a href="#3-查看镜像使用状态" class="headerlink" title="3. 查看镜像使用状态"></a>3. 查看镜像使用状态</h3><figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">get</span> registry<br></code></pre></div></td></tr></table></figure>
+<p>如果返回<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com</a> 1，说明配置成功</p>
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>登录 GitHub 账号<br>登录进去点击右上角+号<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github6.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>点击这个</p>
+<p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github7.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>新建一个名为 username.github.io （这里的 username 要替换成自己的实际的用户名） 的仓库，如下图（我这里爆红是因为我已经创建过了）<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github8.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>填写仓库名，格式必须为&lt;用户名&gt;.github.io ，然后点击Create repository 。</p>
+<h1 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h1><p>为什么要配置这个 因为我们首先要本地架构Hexo框架</p>
+<p>写好博客 编译成html页面 上传到GitHub仓库</p>
+<p>从本地链接GitHub要使用git这个工具、</p>
+<p>而这些操作得有账号的所有权</p>
+<p>有两种可以取得权限的方法</p>
+<p>~~ 通过Personal access tokens 就是GitHub的密钥</p>
+<p>还有就是本文这种 本文这种方法强力推荐 太好用了</p>
+<p>打开 Git Bash，输入命令：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs 1c">ssh<span class="hljs-punctuation">-</span>keygen <span class="hljs-punctuation">-</span>t rsa <span class="hljs-punctuation">-</span>C <span class="hljs-string">&quot;user.email&quot;</span> <span class="hljs-meta"># user.email 为GitHub 上注册的邮箱</span><br></code></pre></div></td></tr></table></figure>
+<p>然后直接三个回车即可，默认不需要设置密码。查看是否已经有 ssh 密钥。打开用户主目录 C:\Users\username.ssh ，.ssh文件夹一定存放在C:，至于后面的路径lenovo这个不一定每台电脑都相同。找到.ssh文件夹，打开如下：<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github9.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>然后找到生成的 .ssh 的文件夹中的 id_rsa.pub 密钥，将内容全部复制。其中 id_rsa 是私钥不能泄露，id_rsa.pub 是公钥可以放心告诉他人。</p>
+<p>尽量不要公钥告诉他人 哈哈哈<br>打开 <a target="_blank" rel="noopener" href="https://github.com/settings/ssh/new">GitHub SSH and GPG keys</a>页面，新建一个 ssh key：<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github10.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>如果没有添加成功,可以自行查看是不是openssh(有个客户端和一个服务端)没有打开(自行百度)<br>Title 为标题，任意填即可，将刚刚复制的 id_rsa.pub 内容粘贴进去，最后点击 Add SSH key。在 Git Bash 中检测 GitHub 公钥设置是否成功，输入如下命令：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></div></td></tr></table></figure>
+<p>验证是否连接成功，连接成功的话，显示如下：<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github11.png" srcset="/img/loading.gif" lazyload alt="图片"><br>如果电脑上没有openssh,需要安装openssh服务端</p>
+<h1 id="部署Hexo"><a href="#部署Hexo" class="headerlink" title="部署Hexo"></a>部署Hexo</h1><p>Hexo 官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/docs/">Documentation | Hexo 11</a></p>
+<h2 id="Hexo-是什么"><a href="#Hexo-是什么" class="headerlink" title="Hexo 是什么"></a>Hexo 是什么</h2><p>Hexo 是一个简单、快速、强大的基于 Github Pages 的博客框架，支持 Markdown 格式，有众多优秀插件和主题。</p>
+<h2 id="Hexo-原理"><a href="#Hexo-原理" class="headerlink" title="Hexo 原理"></a>Hexo 原理</h2><p>由于 Github Pages 存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以 Hexo 所做的就是将这些 md 文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到 GitHub 。</p>
+<h2 id="安装与初始化"><a href="#安装与初始化" class="headerlink" title="安装与初始化"></a>安装与初始化</h2><p>在 Git Bash 中输入以下命令：<br><code>npm install -g hexo-cli # 此命令完成对 hexo 的安装</code><br>安装完成后，在电脑的某个地方新建一个文件夹（名字可以随便取）专门用于存放博客代码，比如我的是 E:\blog\master-blog ，由于这个文件夹将来存放博客的所有内容和素材，以及所有的博客操作都会在其中完成，所以最好不要随便放。</p>
+<p>进入新建的博客目录，点右键鼠标：<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github12.webp" srcset="/img/loading.gif" lazyload alt="图片"><br>打开git命令框,输入如下命令：<br><code>hexo init # 该命令完成 hexo 在本地博客目录的初始化</code></p>
+<p><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github13.webp" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><p><code>hexo g</code><br>执行以上命令后，Hexo 就会在 public 文件夹中生成相关的 html 文件，这些文件将来都是要提交到 GitHub 上的 username.github.io 的仓库中去的。<br>本地预览<br>在 Git Bash 输入以下命令：<br><code>hexo s</code><br>hexo s 是开启本地预览服务，打开浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到内容，Ctrl+C 停止本地预览。本地预览可以实时查看博客的编辑情况，待博客写完后一起部署到 GitHub 上。</p>
+<p>第一次初始化的时候 hexo 已经帮我们写了一篇名为 Hello World 的文章，默认的主题比较丑</p>
+<h2 id="切换模板"><a href="#切换模板" class="headerlink" title="切换模板"></a>切换模板</h2><p>我推荐使用fluid</p>
+<p>输入以下命令:</p>
+<p> <code>git clone https://gitclone.com/github.com/fluid-dev/hexo-theme-fluid.git themes/fluid</code></p>
+<h2 id="指定模板"><a href="#指定模板" class="headerlink" title="指定模板"></a>指定模板</h2><p>如下修改博客目录中的 _config.yml：<br>theme: fluid # 指定主题<br>language: zh-CN # 指定语言，会影响主题显示的语言，按需修改<br><img src="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/github14.webp" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h1 id="推送到GitHub"><a href="#推送到GitHub" class="headerlink" title="推送到GitHub"></a>推送到GitHub</h1><h2 id="配置站点配置文件"><a href="#配置站点配置文件" class="headerlink" title="配置站点配置文件"></a>配置站点配置文件</h2><p>打开根目录下站点配置文件 _config.yml，配置有关 deploy 的部分：</p>
+<figure class="highlight dts"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dts"><span class="hljs-meta"># Deployment</span><br><span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/one-command-deployment</span></span><br><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> git@github.com:你的用户名/你的用户名.github.io.git<br><span class="hljs-symbol">  branch:</span> main<br></code></pre></div></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight dts"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dts"><span class="hljs-meta"># Deployment</span><br><span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/one-command-deployment</span></span><br><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> git@github.com:master08s/master08s.github.io.git<br><span class="hljs-symbol">  branch:</span> main<br></code></pre></div></td></tr></table></figure>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>在 Git Bash 中输入以下命令：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> hexo-deployer-git --save <span class="hljs-comment"># 安装部署插件 </span><br></code></pre></div></td></tr></table></figure>
+<p>在 Git Bash 中输入以下命令：</p>
+<figure class="highlight sas"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sas">hexo clean <span class="hljs-variable">&amp;&amp;</span> hexo g <span class="hljs-variable">&amp;&amp;</span> hexo d<br></code></pre></div></td></tr></table></figure>
+<p>部署成功后，打开对应的网址 <a target="_blank" rel="noopener" href="https://username.github.io/">https://username.github.io</a> ，如果出现了和本地预览一样的效果，那么，表明部署成功。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%B8%AA%E4%BA%BABlog/">个人Blog</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                    
+                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
+                    
+                      <a class="hover-with-bg" href="/tags/VSCode/">VSCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/node-js/">node.js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">windows和linux frp自动管理配置</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://vercel-c9ob2rs82-digitalparttys-projects.vercel.app/",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: [],
+          emojiCDN: "",
+          emojiMaps: {},
+          anonymous: null,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

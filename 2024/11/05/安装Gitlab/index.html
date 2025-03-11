@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>安装Gitlab - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dXGzELRV6co0uMbi59aD9bae-MdYXbMMI","app_key":"po0TJ5rRhji7tCPUfeZhwluZ","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>数码派对的Bolg</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="安装Gitlab">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-11-05 16:01" pubdate>
+        November 5, 2024 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">安装Gitlab</h1>
+            
+            <div class="markdown-body">
+              <h2 id="安装并配置必要的依赖关系"><a href="#安装并配置必要的依赖关系" class="headerlink" title="安装并配置必要的依赖关系"></a>安装并配置必要的依赖关系</h2><p>在CentOS系统上安装所需的依赖：ssh，防火墙,postfix(用于邮件通知) ，wget，以下这些命令也会打开系统防火墙中的HTTP和SSH端口访问。</p>
+<h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><figure class="highlight axapta"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs axapta">sudo yum install -y curl policycoreutils-pythonopenssh-<span class="hljs-keyword">server</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="将SSH服务设置成开机自启动，安装命令："><a href="#将SSH服务设置成开机自启动，安装命令：" class="headerlink" title="将SSH服务设置成开机自启动，安装命令："></a>将SSH服务设置成开机自启动，安装命令：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> sshd  <br></code></pre></div></td></tr></table></figure>
+<h3 id="启动SSH服务，安装命令："><a href="#启动SSH服务，安装命令：" class="headerlink" title="启动SSH服务，安装命令："></a>启动SSH服务，安装命令：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start sshd<br></code></pre></div></td></tr></table></figure>
+<h3 id="安装防火墙"><a href="#安装防火墙" class="headerlink" title="安装防火墙"></a>安装防火墙</h3><p>如果已经安装了防火墙并且已经在运行状态，则可直接跳过</p>
+<figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cmake">yum <span class="hljs-keyword">install</span> firewalld systemd -y<br></code></pre></div></td></tr></table></figure>
+<h3 id="若出现“完毕！”的字样，则表示安装成功"><a href="#若出现“完毕！”的字样，则表示安装成功" class="headerlink" title="若出现“完毕！”的字样，则表示安装成功"></a>若出现“完毕！”的字样，则表示安装成功</h3><h3 id="开启防火墙，安装命令："><a href="#开启防火墙，安装命令：" class="headerlink" title="开启防火墙，安装命令："></a>开启防火墙，安装命令：</h3><figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crmsh">service firewalld  <span class="hljs-literal">start</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="添加http服务到firewalld-pemmanent表示永久生效，若不加–permanent系统下次启动后就会失效。"><a href="#添加http服务到firewalld-pemmanent表示永久生效，若不加–permanent系统下次启动后就会失效。" class="headerlink" title="添加http服务到firewalld,pemmanent表示永久生效，若不加–permanent系统下次启动后就会失效。"></a>添加http服务到firewalld,pemmanent表示永久生效，若不加–permanent系统下次启动后就会失效。</h3><figure class="highlight brainfuck"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs brainfuck"><span class="hljs-comment">sudo firewall</span><span class="hljs-literal">-</span><span class="hljs-comment">cmd</span> <span class="hljs-literal">--</span><span class="hljs-comment">permanent</span> <span class="hljs-literal">--</span><span class="hljs-comment">add</span><span class="hljs-literal">-</span><span class="hljs-comment">service=http</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="重启防火墙，安装命令："><a href="#重启防火墙，安装命令：" class="headerlink" title="重启防火墙，安装命令："></a>重启防火墙，安装命令：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl reload firewalld<br></code></pre></div></td></tr></table></figure>
+<h3 id="接下来，安装Postfix以发送通知邮件，安装命令："><a href="#接下来，安装Postfix以发送通知邮件，安装命令：" class="headerlink" title="接下来，安装Postfix以发送通知邮件，安装命令："></a>接下来，安装Postfix以发送通知邮件，安装命令：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install postfix<br></code></pre></div></td></tr></table></figure>
+<h3 id="将postfix服务设置成开机自启动，安装命令："><a href="#将postfix服务设置成开机自启动，安装命令：" class="headerlink" title="将postfix服务设置成开机自启动，安装命令："></a>将postfix服务设置成开机自启动，安装命令：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> postfix<br></code></pre></div></td></tr></table></figure>
+<h3 id="启动postfix，安装命令："><a href="#启动postfix，安装命令：" class="headerlink" title="启动postfix，安装命令："></a>启动postfix，安装命令：</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start postfix<br></code></pre></div></td></tr></table></figure>
+<p>在安装Postfix期间，可能会出现配置屏幕。选择“Internet Site”并按enter键。使用您的服务器的外部DNS以“mail name”并按enter。如果出现额外的屏幕，继续按enter键接受默认值。</p>
+<h3 id="wget-用于从外网上下载插件"><a href="#wget-用于从外网上下载插件" class="headerlink" title="wget 用于从外网上下载插件"></a>wget 用于从外网上下载插件</h3><p>检查系统中是否已经安装wget，使用命令若出现下图wget相关版本描述则说明系统中已经安装wget 若报系统找不到命令说明wget未安装</p>
+<h3 id="若wget未安装则进行安装，安装命令："><a href="#若wget未安装则进行安装，安装命令：" class="headerlink" title="若wget未安装则进行安装，安装命令："></a>若wget未安装则进行安装，安装命令：</h3><figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cmake">yum -y <span class="hljs-keyword">install</span> wget<br></code></pre></div></td></tr></table></figure>
+<h3 id="安装vim编辑器-安装命令："><a href="#安装vim编辑器-安装命令：" class="headerlink" title="安装vim编辑器  安装命令："></a>安装vim编辑器  安装命令：</h3><figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cmake">yum <span class="hljs-keyword">install</span> vim -y<br></code></pre></div></td></tr></table></figure>
+<h2 id="添加GitLab镜像源并安装gitlab服务器"><a href="#添加GitLab镜像源并安装gitlab服务器" class="headerlink" title="添加GitLab镜像源并安装gitlab服务器"></a>添加GitLab镜像源并安装gitlab服务器</h2><h3 id="添加gitlab镜像"><a href="#添加gitlab镜像" class="headerlink" title="添加gitlab镜像"></a>添加gitlab镜像</h3><figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">wget</span> https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-<span class="hljs-number">10</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>-ce.<span class="hljs-number">0</span>.el7.x86_64.rpm<br></code></pre></div></td></tr></table></figure>
+<h3 id="安装gitlab-安装命令："><a href="#安装gitlab-安装命令：" class="headerlink" title="安装gitlab 安装命令："></a>安装gitlab 安装命令：</h3><figure class="highlight apache"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">rpm</span> -i gitlab-ce-<span class="hljs-number">10</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>-ce.<span class="hljs-number">0</span>.el7.x86_64.rpm<br></code></pre></div></td></tr></table></figure>
+<h3 id="修改gitlab配置文件指定服务器ip和自定义端口："><a href="#修改gitlab配置文件指定服务器ip和自定义端口：" class="headerlink" title="修改gitlab配置文件指定服务器ip和自定义端口："></a>修改gitlab配置文件指定服务器ip和自定义端口：</h3><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">vim  <span class="hljs-regexp">/etc/gi</span>tlab/gitlab.rb<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab1.png" srcset="/img/loading.gif" lazyload alt="gitlab1"><br>进入编辑器后按“i”键进入编辑状态，ESC键退出编辑状态<br>退出并保存，命令输入:wq<br>ps:注意这里设置的端口不能被占用，默认是8080端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口</p>
+<h3 id="重置并启动GitLab"><a href="#重置并启动GitLab" class="headerlink" title="重置并启动GitLab"></a>重置并启动GitLab</h3><p>执行：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">gitlab-ctl reconfigure</span><br><span class="hljs-attribute">gitlab-ctl restart</span><br></code></pre></div></td></tr></table></figure>
+<p>提示  “ok: run:”表示启动成功</p>
+<h3 id="访问-GitLab页面"><a href="#访问-GitLab页面" class="headerlink" title="访问 GitLab页面"></a>访问 GitLab页面</h3><p>如果没有域名，直接输入服务器ip和指定端口进行访问<br>初始账户: root 密码:5iveL!fe<br>第一次登录修改密码（后边会讲）</p>
+<h2 id="安装过程遇见的那些坑"><a href="#安装过程遇见的那些坑" class="headerlink" title="安装过程遇见的那些坑"></a>安装过程遇见的那些坑</h2><h3 id="在CentOS里面安装软件-提示软件已安装，但是rpm-q和-e都是提示包没有安装"><a href="#在CentOS里面安装软件-提示软件已安装，但是rpm-q和-e都是提示包没有安装" class="headerlink" title="在CentOS里面安装软件,提示软件已安装，但是rpm -q和-e都是提示包没有安装"></a>在CentOS里面安装软件,提示软件已安装，但是rpm -q和-e都是提示包没有安装</h3><p>查看与rpm包相关的文件和其他信息   rpm -qa | grep 包名<br>查询包是否被安装，命令：rpm -q 包名<br>删除软件包，命令：rpm -e 包名<br>运行以上三步，把原来的包删除掉重新下载和安装</p>
+<h3 id="开放gitlab端口"><a href="#开放gitlab端口" class="headerlink" title="开放gitlab端口"></a>开放gitlab端口</h3><blockquote>
+<p>CentOS 7 开放防火墙端口 命令<br>最近CentOS7的防火墙和6不一样了， 发现以前CentOS 6 系列中的 iptables 相关命令不能用了，查了下，发现Centos 7使用firewalld代替了原来的iptables。<br>使用方法如下：<br>关闭防火墙</p>
+</blockquote>
+<figure class="highlight gauss"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs gauss">systemctl <span class="hljs-keyword">stop</span> firewalld.service             <span class="hljs-meta">#停止firewall</span><br>systemctl <span class="hljs-keyword">disable</span> firewalld.service        <span class="hljs-meta">#禁止firewall开机启动</span><br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<p>开启端口</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">firewall-cmd <span class="hljs-attribute">--zone</span>=public <span class="hljs-attribute">--add-port</span>=80/tcp --permanent<br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<p>命令含义：<br>–zone #作用域<br>–add-port&#x3D;80&#x2F;tcp #添加端口，格式为：端口&#x2F;通讯协议<br>–permanent #永久生效，没有此参数重启后失效<br>重启防火墙</p>
+</blockquote>
+<figure class="highlight ada"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ada">firewall-cmd <span class="hljs-comment">--reload</span><br></code></pre></div></td></tr></table></figure>
+<blockquote>
+<p>常用命令介绍</p>
+</blockquote>
+<figure class="highlight dsconfig"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dsconfig"><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--state</span>                           <span class="hljs-comment">##查看防火墙状态，是否是running</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--reload</span>                          <span class="hljs-comment">##重新载入配置，比如添加规则之后，需要执行此命令</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--get-zones</span>                       <span class="hljs-comment">##列出支持的zone</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--get-services</span>                    <span class="hljs-comment">##列出支持的服务，在列表中的服务是放行的</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--query-service</span> <span class="hljs-string">ftp</span>               <span class="hljs-comment">##查看ftp服务是否支持，返回yes或者no</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--add-service=ftp</span>                 <span class="hljs-comment">##临时开放ftp服务</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--add-service=ftp</span> <span class="hljs-built_in">--permanent</span>     <span class="hljs-comment">##永久开放ftp服务</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--remove-service=ftp</span> <span class="hljs-built_in">--permanent</span>  <span class="hljs-comment">##永久移除ftp服务</span><br><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--add-port=80/tcp</span> <span class="hljs-built_in">--permanent</span>     <span class="hljs-comment">##永久添加80端口 </span><br><span class="hljs-string">iptables</span> -<span class="hljs-string">L</span> -<span class="hljs-string">n</span>                                 <span class="hljs-comment">##查看规则，这个命令是和iptables的相同的</span><br><span class="hljs-string">man</span> <span class="hljs-string">firewall-cmd</span>                               <span class="hljs-comment">##查看帮助</span><br></code></pre></div></td></tr></table></figure>
+<p>更多命令，使用 <code>firewall-cmd --help</code> 查看帮助文件</p>
+<p>重新开启防火墙：Failed to start firewalld.service: Unit firewalld.service is masked 问题解决：</p>
+<ol>
+<li>CentOS 7.0默认使用的是firewall作为防火墙，使用iptables必须重新设置一下<ol>
+<li>直接关闭防火墙<figure class="highlight gauss"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs gauss">systemctl <span class="hljs-keyword">stop</span> firewalld.service           <span class="hljs-meta">#停止firewall</span><br>systemctl <span class="hljs-keyword">disable</span> firewalld.service     <span class="hljs-meta">#禁止firewall开机启动</span><br></code></pre></div></td></tr></table></figure></li>
+<li>设置 iptables service<figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cmake">yum -y <span class="hljs-keyword">install</span> iptables-services<br></code></pre></div></td></tr></table></figure></li>
+<li>如果要修改防火墙配置，如增加防火墙端口3306<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">vi <span class="hljs-regexp">/etc/</span>sysconfig/iptables <br></code></pre></div></td></tr></table></figure></li>
+<li>增加规则<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css">-<span class="hljs-selector-tag">A</span> <span class="hljs-selector-tag">INPUT</span> -m state <span class="hljs-attr">--state</span> NEW -m tcp -<span class="hljs-selector-tag">p</span> tcp <span class="hljs-attr">--dport</span> <span class="hljs-number">3306</span> -j ACCEPT<br></code></pre></div></td></tr></table></figure></li>
+<li>保存退出后<figure class="highlight nsis"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl restart iptables.service <span class="hljs-comment">#重启防火墙使配置生效</span><br><span class="hljs-params">system</span>ctl enable iptables.service <span class="hljs-comment">#设置防火墙开机启动</span><br></code></pre></div></td></tr></table></figure>
+最后重启系统使设置生效即可。</li>
+</ol>
+</li>
+</ol>
+<h2 id="初始化管理员密码"><a href="#初始化管理员密码" class="headerlink" title="初始化管理员密码;"></a>初始化管理员密码;</h2><h3 id="改超级管理员root的密码"><a href="#改超级管理员root的密码" class="headerlink" title="改超级管理员root的密码"></a>改超级管理员root的密码</h3><ol>
+<li>切换目录：<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/gitlab/bin<br></code></pre></div></td></tr></table></figure></li>
+<li>执行 ：<figure class="highlight arcade"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs arcade">sudo gitlab-rails <span class="hljs-built_in">console</span> production 命令 开始初始化密码<br></code></pre></div></td></tr></table></figure></li>
+<li>在irb(main):001:0&gt; 后面通过 <code> u=User.where(id:1).first</code> 来查找与切换账号（User.all 可以查看所有用户）</li>
+<li>通过<code>u.password=&#39;12345678&#39;</code>设置密码为12345678(这里的密码看自己喜欢)：</li>
+<li>通过<code>u.password_confirmation=&#39;12345678&#39;</code> 再次确认密码</li>
+<li>通过 <code>u.save!</code>进行保存（切记切记 后面的 !）</li>
+<li>如果看到true ，恭喜你已经成功了，执行 exit 退出当前设置流程即可。</li>
+<li>回到gitlab ,可以通过 root&#x2F;12345678 这一超级管理员账号登录了<br>至此大功搞成。<br>剩下来的就是享受成功带来的gitlab乐趣了。</li>
+</ol>
+<h2 id="创建仓库；"><a href="#创建仓库；" class="headerlink" title="创建仓库；"></a>创建仓库；</h2><h3 id="查看是否开启ssh和http"><a href="#查看是否开启ssh和http" class="headerlink" title="查看是否开启ssh和http"></a>查看是否开启ssh和http</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab2.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="关闭头像服务，因其在国外，减缓了访问速度"><a href="#关闭头像服务，因其在国外，减缓了访问速度" class="headerlink" title="关闭头像服务，因其在国外，减缓了访问速度"></a>关闭头像服务，因其在国外，减缓了访问速度</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab3.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发"><a href="#关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发" class="headerlink" title="关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发"></a>关闭注册接口，因为这是企业内部的访问仓库，账号由管理员分发</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab4.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="登录页面的信息提示"><a href="#登录页面的信息提示" class="headerlink" title="登录页面的信息提示"></a>登录页面的信息提示</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab5.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="记得保存！"><a href="#记得保存！" class="headerlink" title="记得保存！"></a>记得保存！</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab6.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="新建用户（管理员操作）"><a href="#新建用户（管理员操作）" class="headerlink" title="新建用户（管理员操作）"></a>新建用户（管理员操作）</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab7.png" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab8.png" srcset="/img/loading.gif" lazyload alt="图片"><br><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab9.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="创建仓库-项目"><a href="#创建仓库-项目" class="headerlink" title="创建仓库-项目"></a>创建仓库-项目</h3><p><img src="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/gitlab10.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="创建完空白仓库就可以通过idea或者命令行等方式上传代码；"><a href="#创建完空白仓库就可以通过idea或者命令行等方式上传代码；" class="headerlink" title="创建完空白仓库就可以通过idea或者命令行等方式上传代码；"></a>创建完空白仓库就可以通过idea或者命令行等方式上传代码；</h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CentOS7/">CentOS7</a>
+                    
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/06/%E8%BF%81%E7%A7%BBGitlab/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">迁移Gitlab</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/">
+                        <span class="hidden-mobile">Centos7安装RabbitMQ3.8.5</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://vercel-c9ob2rs82-digitalparttys-projects.vercel.app/",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: [],
+          emojiCDN: "",
+          emojiMaps: {},
+          anonymous: null,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

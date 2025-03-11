@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>ubuntu server24 安装clash - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dXGzELRV6co0uMbi59aD9bae-MdYXbMMI","app_key":"po0TJ5rRhji7tCPUfeZhwluZ","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>数码派对的Bolg</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ubuntu server24 安装clash">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-02-19 10:51" pubdate>
+        February 19, 2025 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ubuntu server24 安装clash</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Linux-一键安装-Clash"><a href="#Linux-一键安装-Clash" class="headerlink" title="Linux 一键安装 Clash"></a>Linux 一键安装 Clash</h1><p>因为有在服务器上使用代理的需求，试过许多开源脚本，总是遇到各种问题。于是自己动手，丰衣足食：对 <code>Clash</code> 的安装过程及功能进行了友好封装，使用起来优雅、简单、明确。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
+<li>需要 <code>root</code> 或 <code>sudo</code> 权限。</li>
+<li>具备 <code>bash</code> 和 <code>systemd</code> 的系统环境。</li>
+<li>已适配：<code>CentOS 7.6</code>、<code>Debian 12</code>、<code>Ubuntu 24.04.1 LTS</code>。</li>
+</ul>
+<h3 id="一键安装"><a href="#一键安装" class="headerlink" title="一键安装"></a>一键安装</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gh-proxy.com/https://github.com/nelvko/clash-for-linux-install.git \<br>  &amp;&amp; <span class="hljs-built_in">cd</span> clash-for-linux-install \<br>  &amp;&amp; <span class="hljs-built_in">sudo</span> bash -c <span class="hljs-string">&#x27;. install.sh; exec bash&#x27;</span><br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>如遇问题，请在查阅<a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>及 <a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues?q=is:issue">issue</a> 未果后进行反馈。</p>
+</blockquote>
+<ul>
+<li>上述克隆命令使用了<a target="_blank" rel="noopener" href="https://gh-proxy.com/">加速前缀</a>，如失效请更换其他<a target="_blank" rel="noopener" href="https://ghproxy.link/">可用链接</a>。</li>
+<li><del>不懂什么是订阅链接的小白可参考</del>：<a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues/1">issue#1</a></li>
+<li>没有订阅？<a target="_blank" rel="noopener" href="https://次元.net/auth/register?code=oUbI">click me</a></li>
+<li>验证是否连通外网：<code>wget www.google.com</code></li>
+</ul>
+<h3 id="命令一览"><a href="#命令一览" class="headerlink" title="命令一览"></a>命令一览</h3><p>执行 <code>clash</code> 列出开箱即用的快捷命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ clash<br>Usage:                                    <br>    clashon                开启代理       <br>    clashoff               关闭代理       <br>    clashui                面板地址       <br>    clashtun [on|off]      Tun模式        <br>    clashsecret [secret]   查看/设置密钥  <br>    clashmixin [-e|-r]     Mixin配置      <br>    clashupdate [auto|<span class="hljs-built_in">log</span>] 更新订阅<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ clashoff<br>😼 已关闭代理环境<br><br>$ clashon<br>😼 已开启代理环境<br><br>$ clashui<br>😼 Web 面板地址...<br></code></pre></div></td></tr></table></figure>
+
+<p>原理：</p>
+<ul>
+<li>使用 <code>systemctl</code> 控制 <code>clash</code> 启停，并调整代理环境变量的值（http_proxy 等）。因为应用程序在发起网络请求时，会通过其指定的代理地址转发流量，不调整会造成：关闭代理后仍转发导致请求失败、开启代理后未设置代理地址导致请求不转发。</li>
+<li><code>clashon</code> 等命令封装了上述流程。</li>
+</ul>
+<h3 id="定时更新订阅"><a href="#定时更新订阅" class="headerlink" title="定时更新订阅"></a>定时更新订阅</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ clashupdate [url]<br>😼 配置更新成功，已重启生效<br><br>$ clashupdate auto [url]<br>😼 定时任务设置成功<br><br>$ clashupdate <span class="hljs-built_in">log</span><br>✅ 2024-12-13 23:38:56 配置更新成功 ...<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><code>clashupdate</code> 会记忆上次更新成功的订阅，后续执行无需再指定订阅 <code>url</code>。</li>
+<li>可通过 <code>crontab -e</code> 修改定时更新频率及订阅链接。</li>
+<li>其他更新方式：<a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/pull/24#issuecomment-2565054701">pr#24</a></li>
+</ul>
+<h3 id="Web-控制台密钥"><a href="#Web-控制台密钥" class="headerlink" title="Web 控制台密钥"></a>Web 控制台密钥</h3><p>控制台密钥默认为空，若暴露到公网使用建议更新密钥。</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ clashsecret xxx<br>😼 密钥更新成功，已重启生效<br><br>$ clashsecret<br>😼 当前密钥：xxx<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="Tun-模式"><a href="#Tun-模式" class="headerlink" title="Tun 模式"></a><code>Tun</code> 模式</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ clashtun<br>😾 Tun 状态：关闭<br><br>$ clashtun on<br>😼 Tun 模式已开启<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>作用：实现本机及 <code>Docker</code> 等容器的所有流量路由到 <code>clash</code> 代理、DNS 劫持等。</li>
+<li>原理：<a target="_blank" rel="noopener" href="https://www.clashverge.dev/guide/term.html#tun">clash-verge-rev</a>、 <a target="_blank" rel="noopener" href="https://clash.wiki/premium/tun-device.html">clash.wiki</a>。</li>
+</ul>
+<h3 id="Mixin-配置"><a href="#Mixin-配置" class="headerlink" title="Mixin 配置"></a><code>Mixin</code> 配置</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ clashmixin<br>😼 查看 mixin 配置（less）<br><br>$ clashmixin -e<br>😼 编辑 mixin 配置（vim）<br><br>$ clashmixin -r<br>😼 查看 运行时 配置（less）<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>作用：用来存储自定义配置，防止更新订阅后覆盖丢失自定义配置内容。</li>
+<li>运行时配置是订阅配置和 <code>Mixin</code> 配置的并集。</li>
+<li>相同配置项优先级：<code>Mixin</code> 配置 &gt; 订阅配置。</li>
+</ul>
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>以下为通用命令，<code>root</code> 用户可直接使用： <code>. uninstall.sh</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> bash -c <span class="hljs-string">&#x27;. uninstall.sh; exec bash&#x27;</span><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="配置下载失败或无效"><a href="#配置下载失败或无效" class="headerlink" title="配置下载失败或无效"></a>配置下载失败或无效</h3><ul>
+<li>下载失败：脚本使用 <code>wget</code>、<code>curl</code> 命令进行了多次<a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/blob/035c85ac92166e95b7503b2a678a6b535fbd4449/script/common.sh#L32-L46">重试</a>下载，如果还是失败可能是机场限制，请自行粘贴订阅内容到配置文件：<a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues/1#issuecomment-2066334716">issue#1</a></li>
+<li>订阅配置无效：<del><a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues/14#issuecomment-2513303276">issue#14</a></del><br>配置下载成功后会对其进行校验，校验失败将在本地进行订阅转换后重试，仍无效请检查是否为有效的 <code>clash</code> 订阅。</li>
+</ul>
+<h3 id="bash-clashon-command-not-found"><a href="#bash-clashon-command-not-found" class="headerlink" title="bash: clashon: command not found"></a>bash: clashon: command not found</h3><ul>
+<li>原因：使用 <code>bash install.sh</code> 执行脚本不会对当前 <code>shell</code> 生效。</li>
+<li>解决：当前 <code>shell</code> 执行下 <code>bash</code> 即可。</li>
+</ul>
+<details>
+
+<summary>几种运行方式的区别：</summary>
+
+<ul>
+<li><p><code>bash</code> 命令运行：当前 <code>shell</code> 开启一个子 <code>shell</code> 执行脚本，对环境的修改不会作用到当前 <code>shell</code>，因此不具备 <code>clashon</code><br> 等命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 需要有可执行权限</span><br>$ ./install.sh<br> <br><span class="hljs-comment"># 不需要可执行权限，需要读权限</span><br>$ bash ./install.sh<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p><code>shell</code> 内建命令运行：脚本在当前 <code>shell</code> 环境中执行，变量和函数的定义对当前 <code>shell</code> 有效，<code>root</code> 用户推荐这种方式执行脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 不需要可执行权限，需要读权限</span><br>$ . install.sh<br>$ <span class="hljs-built_in">source</span> uninstall.sh<br></code></pre></div></td></tr></table></figure></li>
+</ul>
+</details>
+
+<h3 id="ping-不通外网"><a href="#ping-不通外网" class="headerlink" title="ping 不通外网"></a>ping 不通外网</h3><ul>
+<li><code>ping</code> 命令使用的是第三层中的 <code>ICMP</code> 协议，不依赖 <code>clash</code> 代理的上层 <code>TCP</code> 协议。</li>
+<li>执行 <code>clashtun on</code> 后可以 <code>ping</code> 通，但得到的是 fake ip，原理详见：<a target="_blank" rel="noopener" href="https://clash.wiki/configuration/dns.html#fake-ip">clash.wiki</a>。</li>
+</ul>
+<h3 id="服务启动失败-未启动"><a href="#服务启动失败-未启动" class="headerlink" title="服务启动失败&#x2F;未启动"></a>服务启动失败&#x2F;未启动</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues/15#issuecomment-2507341281">端口占用</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues/11#issuecomment-2469817217">系统为 WSL 环境或不具备 systemd</a></li>
+</ul>
+<h3 id="x86、arm架构"><a href="#x86、arm架构" class="headerlink" title="x86、arm架构"></a>x86、arm架构</h3><p>将 <code>resource/zip</code> 目录中的 <code>clash-linux-amd64-2023.08.17.gz</code>、<code>yq_linux_amd64.tar.gz</code>、<code>subconverter_linux64.tar.gz</code> 压缩包替换为对应架构版本后再执行安装脚本。</p>
+<blockquote>
+<p>目前仅支持自动下载 clash 的对应架构软件包。</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mikefarah/yq/releases/tag/v4.45.1">yq v4.45.1</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tindy2013/subconverter/releases/tag/v0.9.0">subconverter v0.9.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://downloads.clash.wiki/ClashPremium/">Clash Premium</a></li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://clash.wiki/">Clash 知识库</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.clash.la/releases/">Clash 全家桶下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tindy2013/subconverter">subconverter：本地订阅转换</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/haishanh/yacd">yacd：Web UI</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mikefarah/yq">yq：处理 yaml</a></li>
+</ul>
+<h2 id="Todolog"><a href="#Todolog" class="headerlink" title="Todolog"></a>Todolog</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 定时更新配置</li>
+<li><input checked="" disabled="" type="checkbox"> 😼</li>
+<li><input checked="" disabled="" type="checkbox"> 适配其他发行版</li>
+<li><input checked="" disabled="" type="checkbox"> 配置更新日志</li>
+<li><input checked="" disabled="" type="checkbox"> Tun 模式</li>
+<li><input checked="" disabled="" type="checkbox"> mixin 配置</li>
+<li><input checked="" disabled="" type="checkbox"> 适配x86、arm架构</li>
+<li><input checked="" disabled="" type="checkbox"> 本地订阅转换</li>
+<li><input disabled="" type="checkbox"> 切换 mohomo 内核</li>
+<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install/issues">bug &#x2F; 需求</a></li>
+</ul>
+<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a target="_blank" rel="noopener" href="https://github.com/nelvko/clash-for-linux-install">@nelvko</a></p>
+<h2 id="特别声明"><a href="#特别声明" class="headerlink" title="特别声明"></a>特别声明</h2><ol>
+<li>编写本项目主要目的为学习和研究 <code>Shell</code> 编程，不得将本项目中任何内容用于违反国家&#x2F;地区&#x2F;组织等的法律法规或相关规定的其他用途。</li>
+<li>本项目保留随时对免责声明进行补充或更改的权利，直接或间接使用本项目内容的个人或组织，视为接受本项目的特别声明。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/07/idea%E9%85%8D%E7%BD%AEmaven%E5%B0%8F%E5%9D%91%E8%AE%B0%E5%BD%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">idea配置maven小坑记录</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/16/%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85MySQL%E6%95%B0%E6%8D%AE%E5%BA%938-0/">
+                        <span class="hidden-mobile">使用docker安装MySQL数据库8.0</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://vercel-c9ob2rs82-digitalparttys-projects.vercel.app/",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: [],
+          emojiCDN: "",
+          emojiMaps: {},
+          anonymous: null,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
