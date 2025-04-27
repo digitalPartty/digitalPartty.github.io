@@ -4,6 +4,176 @@
   
   
   <entry>
+    <title>Window下Docker环境部署(五)</title>
+    <link href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%94/"/>
+    <url>/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%94/</url>
+    
+    <content type="html"><![CDATA[<h2 id="命名卷部署nginx最新版方案"><a href="#命名卷部署nginx最新版方案" class="headerlink" title="命名卷部署nginx最新版方案"></a>命名卷部署nginx最新版方案</h2><h3 id="1-创建命名数据卷"><a href="#1-创建命名数据卷" class="headerlink" title="1 创建命名数据卷"></a>1 创建命名数据卷</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建名为es_vol的持久化存储卷（数据由Docker自动管理）</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker volume create nginx_conf_vol<br>nginx_conf_vol<br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker volume create nginx_html_vol<br>nginx_html_vol<br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker volume create nginx_log_vol<br>nginx_log_vol<br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker volume create nginx_conf.d_vol<br>nginx_conf.d_vol<br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker volume create nginx_cert_vol<br></code></pre></div></td></tr></table></figure><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul><li>数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）</li><li>无需手动配置Windows目录权限，适合快速部署</li></ul><h3 id="2-启动临时nginx容器-获取文件"><a href="#2-启动临时nginx容器-获取文件" class="headerlink" title="2.启动临时nginx容器,获取文件"></a>2.启动临时nginx容器,获取文件</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 启动临时nginx容器</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker run <span class="hljs-literal">--name</span> tmp<span class="hljs-literal">-nginx</span> <span class="hljs-literal">-d</span> nginx:latest<br>Unable to find image <span class="hljs-string">&#x27;nginx:latest&#x27;</span> locally<br>latest: Pulling from library/nginx<br>ec74683520b9: Pull complete<br><span class="hljs-number">8</span>a628cdd7ccc: Pull complete<br>b0c073cda91f: Pull complete<br><span class="hljs-number">32</span>ef64864ec3: Pull complete<br>ad8a0171f43e: Pull complete<br><span class="hljs-number">6</span>c95adab80c5: Pull complete<br>e6557c42ebea: Pull complete<br>Digest: sha256:<span class="hljs-number">5</span>ed8fcc66f4ed123c1b2560ed708dc148755b6e4cbd8b943fab094f2c6bfa91e<br>Status: Downloaded newer image <span class="hljs-keyword">for</span> nginx:latest<br><span class="hljs-number">51</span>cb39bbd3a22a5d4b7e588736af06849448c150447bc7bb7ec868545f42551d<br><br><span class="hljs-comment"># 复制文件到命名卷</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">cp</span> tmp<span class="hljs-literal">-nginx</span>:/etc/nginx/nginx.conf nginx_conf_vol<br>Successfully copied <span class="hljs-number">2.56</span>kB to C:\Users\Administrator\nginx_conf_vol<br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">cp</span> tmp<span class="hljs-literal">-nginx</span>:/etc/nginx/conf.d nginx_conf.d_vol<br>Successfully copied <span class="hljs-number">3.58</span>kB to C:\Users\Administrator\nginx_conf.d_vol<br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">cp</span> tmp<span class="hljs-literal">-nginx</span>:/<span class="hljs-keyword">data</span>/nginx/html nginx_html_vol<br>Error response from daemon: Could not find the file /<span class="hljs-keyword">data</span>/nginx/html <span class="hljs-keyword">in</span> container tmp<span class="hljs-literal">-nginx</span><br><br><span class="hljs-comment"># 删除临时容器</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">rm</span> <span class="hljs-operator">-f</span> tmp<span class="hljs-literal">-nginx</span><br></code></pre></div></td></tr></table></figure><h3 id="3-启动nginx容器"><a href="#3-启动nginx容器" class="headerlink" title="3.启动nginx容器"></a>3.启动nginx容器</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">--name</span> nginx <span class="hljs-literal">-p</span> <span class="hljs-number">80</span>:<span class="hljs-number">80</span> <span class="hljs-literal">-p</span> <span class="hljs-number">443</span>:<span class="hljs-number">443</span> <span class="hljs-literal">-v</span> nginx_conf_vol:/etc/nginx <span class="hljs-literal">-v</span> nginx_conf.d_vol:/etc/nginx/conf.d <span class="hljs-literal">-v</span> nginx_html_vol:/usr/share/nginx/html <span class="hljs-literal">-v</span> nginx_log_vol:/var/log/nginx <span class="hljs-literal">-v</span> nginx_cert_vol:/etc/nginx/cert nginx:latest<br></code></pre></div></td></tr></table></figure><h4 id="关键参数说明："><a href="#关键参数说明：" class="headerlink" title="关键参数说明："></a>关键参数说明：</h4><ul><li>nginx_conf_vol：存放主配置文件nginx.conf</li><li>nginx_conf.d_vol：存放子配置文件（如反向代理、SSL配置）</li><li>nginx_html_vol：静态资源目录（如HTML&#x2F;CSS&#x2F;JS文件）</li><li>nginx_log_vol：Nginx访问日志和错误日志</li><li>nginx_cert_vol：SSL证书文件（.pem和.key）</li></ul><h3 id="3-验证部署状态"><a href="#3-验证部署状态" class="headerlink" title="3.验证部署状态"></a>3.验证部署状态</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">ps</span> <span class="hljs-literal">-a</span> <span class="hljs-literal">--filter</span> name=nginx<br>CONTAINER ID   IMAGE          COMMAND                   CREATED         STATUS         PORTS                                      NAMES<br><span class="hljs-number">96</span>fb036e5581   nginx:latest   <span class="hljs-string">&quot;/docker-entrypoint.…&quot;</span>   <span class="hljs-number">9</span> minutes ago   Up <span class="hljs-number">9</span> minutes   <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">80</span>-&gt;<span class="hljs-number">80</span>/tcp, <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">443</span>-&gt;<span class="hljs-number">443</span>/tcp   nginx<br></code></pre></div></td></tr></table></figure><h4 id="打开网址-http-localhost"><a href="#打开网址-http-localhost" class="headerlink" title="打开网址 http://localhost/"></a>打开网址 <a href="http://localhost/">http://localhost/</a></h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>开发环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>nginx</tag>
+      
+      <tag>docker</tag>
+      
+      <tag>Window</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Window下Docker环境部署(四)</title>
+    <link href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E5%9B%9B/"/>
+    <url>/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E5%9B%9B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="命名卷部署es7-13-2方案"><a href="#命名卷部署es7-13-2方案" class="headerlink" title="命名卷部署es7.13.2方案"></a>命名卷部署es7.13.2方案</h2><h3 id="1-创建命名数据卷"><a href="#1-创建命名数据卷" class="headerlink" title="1 创建命名数据卷"></a>1 创建命名数据卷</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建名为es_vol的持久化存储卷（数据由Docker自动管理）</span><br>docker volume create es_vol<br></code></pre></div></td></tr></table></figure><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul><li>数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）</li><li>无需手动配置Windows目录权限，适合快速部署</li></ul><h3 id="2-启动SQL-Server容器"><a href="#2-启动SQL-Server容器" class="headerlink" title="2.启动SQL Server容器"></a>2.启动SQL Server容器</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">--name</span> es7 <span class="hljs-literal">-p</span> <span class="hljs-number">9200</span>:<span class="hljs-number">9200</span> <span class="hljs-literal">-p</span> <span class="hljs-number">9300</span>:<span class="hljs-number">9300</span> <span class="hljs-literal">-e</span> <span class="hljs-string">&quot;discovery.type=single-node&quot;</span> <span class="hljs-literal">-e</span> <span class="hljs-string">&quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;</span> <span class="hljs-literal">-e</span> <span class="hljs-string">&quot;xpack.security.enabled=true&quot;</span> <span class="hljs-literal">-e</span> <span class="hljs-string">&quot;ELASTIC_PASSWORD=Root1234&quot;</span> <span class="hljs-literal">-v</span> es_vol:/usr/share/elasticsearch/<span class="hljs-keyword">data</span> elasticsearch:<span class="hljs-number">7.13</span>.<span class="hljs-number">2</span><br></code></pre></div></td></tr></table></figure><h4 id="关键参数说明："><a href="#关键参数说明：" class="headerlink" title="关键参数说明："></a>关键参数说明：</h4><ul><li><code>-v es_vol://usr/share/elasticsearch/data</code>：将容器内的&#x2F;data映射到命名卷</li><li><code>-e &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot; </code>可选：调整JVM内存</li><li><code>-e &quot;xpack.security.enabled=true&quot; </code>启用安全功能</li><li><code>-e &quot;ELASTIC_PASSWORD=yourpassword&quot; </code>设置elastic用户密码</li><li></li><li>容器停止&#x2F;重启不会删除数据，但执行<code>docker rm</code>会销毁未挂载的容器层数据</li></ul><h3 id="3-验证部署状态"><a href="#3-验证部署状态" class="headerlink" title="3.验证部署状态"></a>3.验证部署状态</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 检查容器运行状态</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">ps</span> <span class="hljs-literal">-a</span> <span class="hljs-literal">--filter</span> name=es7<br>CONTAINER ID   IMAGE                  COMMAND                   CREATED          STATUS          PORTS                                            NAMES<br><span class="hljs-number">3</span>d45f958c8ca   elasticsearch:<span class="hljs-number">7.13</span>.<span class="hljs-number">2</span>   <span class="hljs-string">&quot;/bin/tini -- /usr/l…&quot;</span>   <span class="hljs-number">12</span> minutes ago   Up <span class="hljs-number">12</span> minutes   <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">9200</span>-&gt;<span class="hljs-number">9200</span>/tcp, <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">9300</span>-&gt;<span class="hljs-number">9300</span>/tcp   es7<br><br><span class="hljs-comment"># 进入容器验证数据库服务</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker exec <span class="hljs-literal">-it</span> es7 /bin/bash<br>[<span class="hljs-type">root</span>@<span class="hljs-number">3</span><span class="hljs-type">d45f958c8ca</span> <span class="hljs-type">elasticsearch</span>]<span class="hljs-comment"># elasticsearch-setup-passwords interactive</span><br></code></pre></div></td></tr></table></figure><h4 id="网页验证"><a href="#网页验证" class="headerlink" title="网页验证"></a>网页验证</h4><ul><li>打开网址 <a href="http://localhost:9200/">http://localhost:9200/</a></li><li>用户名:<code>elastic</code> 密码:<code>Root1234</code></li></ul><h3 id="4-修改密码"><a href="#4-修改密码" class="headerlink" title="4.修改密码"></a>4.修改密码</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 命令</span><br><span class="hljs-comment"># docker exec -it es7 /bin/bash</span><br><span class="hljs-comment"># elasticsearch-setup-passwords interactive</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker exec <span class="hljs-literal">-it</span> es7 /bin/bash<br>[<span class="hljs-type">root</span>@<span class="hljs-number">3</span><span class="hljs-type">d45f958c8ca</span> <span class="hljs-type">elasticsearch</span>]<span class="hljs-comment"># elasticsearch-setup-passwords interactive</span><br>Initiating the setup of passwords <span class="hljs-keyword">for</span> reserved users elastic,apm_system,kibana,kibana_system,logstash_system,beats_system,remote_monitoring_user.<br>You will be prompted to enter passwords as the <span class="hljs-keyword">process</span> progresses.<br>Please confirm that you would like to <span class="hljs-keyword">continue</span> [<span class="hljs-type">y</span>/<span class="hljs-type">N</span>]y<br><br><br>Enter password <span class="hljs-keyword">for</span> [<span class="hljs-type">elastic</span>]:<br>Reenter password <span class="hljs-keyword">for</span> [<span class="hljs-type">elastic</span>]:<br>Enter password <span class="hljs-keyword">for</span> [<span class="hljs-type">apm_system</span>]:<br>Reenter password <span class="hljs-keyword">for</span> [<span class="hljs-type">apm_system</span>]:<br>Enter password <span class="hljs-keyword">for</span> [<span class="hljs-type">kibana_system</span>]:<br>Reenter password <span class="hljs-keyword">for</span> [<span class="hljs-type">kibana_system</span>]:<br>Enter password <span class="hljs-keyword">for</span> [<span class="hljs-type">logstash_system</span>]:<br>Reenter password <span class="hljs-keyword">for</span> [<span class="hljs-type">logstash_system</span>]:<br>Enter password <span class="hljs-keyword">for</span> [<span class="hljs-type">beats_system</span>]:<br>Reenter password <span class="hljs-keyword">for</span> [<span class="hljs-type">beats_system</span>]:<br>Enter password <span class="hljs-keyword">for</span> [<span class="hljs-type">remote_monitoring_user</span>]:<br>Reenter password <span class="hljs-keyword">for</span> [<span class="hljs-type">remote_monitoring_user</span>]:<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">apm_system</span>]<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">kibana_system</span>]<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">kibana</span>]<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">logstash_system</span>]<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">beats_system</span>]<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">remote_monitoring_user</span>]<br>Changed password <span class="hljs-keyword">for</span> user [<span class="hljs-type">elastic</span>]<br>[<span class="hljs-type">root</span>@<span class="hljs-number">3</span><span class="hljs-type">d45f958c8ca</span> <span class="hljs-type">elasticsearch</span>]<span class="hljs-comment"># exit</span><br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>开发环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>Window</tag>
+      
+      <tag>es</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Window下Docker环境部署(三)</title>
+    <link href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%89/"/>
+    <url>/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%89/</url>
+    
+    <content type="html"><![CDATA[<h2 id="命名卷部署redis7-0方案"><a href="#命名卷部署redis7-0方案" class="headerlink" title="命名卷部署redis7.0方案"></a>命名卷部署redis7.0方案</h2><h3 id="1-创建命名数据卷"><a href="#1-创建命名数据卷" class="headerlink" title="1 创建命名数据卷"></a>1 创建命名数据卷</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建名为mssql_vol的持久化存储卷（数据由Docker自动管理）</span><br>docker volume create mssql_vol<br></code></pre></div></td></tr></table></figure><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul><li>数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）</li><li>无需手动配置Windows目录权限，适合快速部署</li></ul><h3 id="2-启动SQL-Server容器"><a href="#2-启动SQL-Server容器" class="headerlink" title="2.启动SQL Server容器"></a>2.启动SQL Server容器</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">--name</span> redis7 <span class="hljs-literal">-p</span> <span class="hljs-number">6379</span>:<span class="hljs-number">6379</span> <span class="hljs-literal">-v</span> redis_vol:/<span class="hljs-keyword">data</span> <span class="hljs-literal">-e</span> REDIS_PASSWORD=Root1234 redis:<span class="hljs-number">7.0</span>.<span class="hljs-number">14</span><br></code></pre></div></td></tr></table></figure><h4 id="关键参数说明："><a href="#关键参数说明：" class="headerlink" title="关键参数说明："></a>关键参数说明：</h4><ul><li><code>-v redis_vol:/data</code>：将容器内的&#x2F;data映射到命名卷</li><li>容器停止&#x2F;重启不会删除数据，但执行<code>docker rm</code>会销毁未挂载的容器层数据</li></ul><h3 id="3-验证部署状态"><a href="#3-验证部署状态" class="headerlink" title="3.验证部署状态"></a>3.验证部署状态</h3><figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql"># 检查容器运行状态<br>PS C:\Users\Administrator&gt; docker ps -a <span class="hljs-comment">--filter name=redis7</span><br>CONTAINER ID   IMAGE          COMMAND                   CREATED          STATUS          PORTS                    NAMES<br><span class="hljs-number">01</span>eedbb7f8b1   redis:<span class="hljs-number">7.0</span><span class="hljs-number">.14</span>   &quot;docker-entrypoint.s…&quot;   <span class="hljs-number">33</span> seconds ago   Up <span class="hljs-number">32</span> seconds   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">6379</span>-&gt;<span class="hljs-number">6379</span>/tcp   redis7<br><br># 进入容器验证数据库服务<br>PS C:\Users\Administrator&gt; docker exec -it redis7 redis-cli -a Root1234<br><span class="hljs-built_in">Warning</span>: <span class="hljs-keyword">Using</span> a <span class="hljs-keyword">password</span> <span class="hljs-keyword">with</span> <span class="hljs-string">&#x27;-a&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;-u&#x27;</span> <span class="hljs-keyword">option</span> <span class="hljs-keyword">on</span> the command <span class="hljs-type">line</span> interface may <span class="hljs-keyword">not</span> be safe.<br>AUTH failed: ERR AUTH &lt;<span class="hljs-keyword">password</span>&gt; <span class="hljs-keyword">called</span> <span class="hljs-keyword">without</span> <span class="hljs-keyword">any</span> <span class="hljs-keyword">password</span> configured <span class="hljs-keyword">for</span> the <span class="hljs-keyword">default</span> <span class="hljs-keyword">user</span>. Are you sure your <span class="hljs-keyword">configuration</span> <span class="hljs-keyword">is</span> correct?<br><span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">6379</span>&gt;<br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>开发环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>Window</tag>
+      
+      <tag>redis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Window下Docker环境部署(二)</title>
+    <link href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%8C/"/>
+    <url>/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%8C/</url>
+    
+    <content type="html"><![CDATA[<h2 id="命名卷部署SqlServer2017方案"><a href="#命名卷部署SqlServer2017方案" class="headerlink" title="命名卷部署SqlServer2017方案"></a>命名卷部署SqlServer2017方案</h2><h3 id="1-创建命名数据卷"><a href="#1-创建命名数据卷" class="headerlink" title="1 创建命名数据卷"></a>1 创建命名数据卷</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建名为mssql_vol的持久化存储卷（数据由Docker自动管理）</span><br>docker volume create mssql_vol<br></code></pre></div></td></tr></table></figure><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul><li>数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）</li><li>无需手动配置Windows目录权限，适合快速部署</li></ul><h3 id="2-启动SQL-Server容器"><a href="#2-启动SQL-Server容器" class="headerlink" title="2.启动SQL Server容器"></a>2.启动SQL Server容器</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">--name</span> sqlserver2017 <span class="hljs-literal">-e</span> <span class="hljs-string">&quot;ACCEPT_EULA=Y&quot;</span> <span class="hljs-literal">-e</span> <span class="hljs-string">&quot;MSSQL_SA_PASSWORD=YourStrong@Passw0rd&quot;</span> <span class="hljs-literal">-p</span> <span class="hljs-number">1433</span>:<span class="hljs-number">1433</span> <span class="hljs-literal">-v</span> mssql_vol:/var/opt/mssql mcr.microsoft.com/mssql/server:<span class="hljs-number">2017</span><span class="hljs-literal">-latest</span><br></code></pre></div></td></tr></table></figure><h4 id="关键参数说明："><a href="#关键参数说明：" class="headerlink" title="关键参数说明："></a>关键参数说明：</h4><ul><li><code>-v mssql_vol:/var/opt/mssql</code>：将容器内的&#x2F;var&#x2F;opt&#x2F;mssql映射到命名卷</li><li>容器停止&#x2F;重启不会删除数据，但执行<code>docker rm</code>会销毁未挂载的容器层数据</li><li><code>MSSQL_SA_PASSWORD=YourStrong@Passw0rd</code> 必须包含大小写+数字+符号</li></ul><h3 id="3-验证部署状态"><a href="#3-验证部署状态" class="headerlink" title="3.验证部署状态"></a>3.验证部署状态</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 检查容器运行状态</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker <span class="hljs-built_in">ps</span> <span class="hljs-literal">-a</span> <span class="hljs-literal">--filter</span> name=sqlserver2017<br>CONTAINER ID   IMAGE                                        COMMAND                   CREATED          STATUS          PORTS                    NAMES<br><span class="hljs-number">8985</span>a7ca82b0   mcr.microsoft.com/mssql/server:<span class="hljs-number">2017</span><span class="hljs-literal">-latest</span>   <span class="hljs-string">&quot;/opt/mssql/bin/nonr…&quot;</span>   <span class="hljs-number">42</span> seconds ago   Up <span class="hljs-number">42</span> seconds   <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">1433</span>-&gt;<span class="hljs-number">1433</span>/tcp   sqlserver2017<br><br><span class="hljs-comment"># 进入容器验证数据库服务</span><br><span class="hljs-built_in">PS</span> C:\Users\Administrator&gt; docker exec <span class="hljs-literal">-it</span> sqlserver2017 /opt/mssql<span class="hljs-literal">-tools</span>/bin/sqlcmd <span class="hljs-literal">-S</span> localhost <span class="hljs-literal">-U</span> SA <span class="hljs-literal">-P</span> <span class="hljs-string">&quot;Root1234&quot;</span> <span class="hljs-literal">-Q</span> <span class="hljs-string">&quot;SELECT @@VERSION&quot;</span><br>                                                                                                                                                                                                                                                <br><span class="hljs-literal">------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span><br>Microsoft SQL Server <span class="hljs-number">2017</span> (RTM<span class="hljs-literal">-CU31-OD</span>) (KB5050533) - <span class="hljs-number">14.0</span>.<span class="hljs-number">3490.10</span> (X64)<br>        Feb <span class="hljs-number">19</span> <span class="hljs-number">2025</span> <span class="hljs-number">12</span>:<span class="hljs-number">19</span>:<span class="hljs-number">28</span><br>        Copyright (C) <span class="hljs-number">2017</span> Microsoft Corporation<br>        Developer Edition (<span class="hljs-number">64</span><span class="hljs-literal">-bit</span>) on Linux (Ubuntu <span class="hljs-number">18.04</span>.<span class="hljs-number">6</span> LTS)                                                        <br><br>(<span class="hljs-number">1</span> rows affected)<br></code></pre></div></td></tr></table></figure><h3 id="4-navicat连接sqlserver2017"><a href="#4-navicat连接sqlserver2017" class="headerlink" title="4.navicat连接sqlserver2017"></a>4.navicat连接sqlserver2017</h3><p><img src="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%8C/j1.jpg" alt="j1.jpg"></p><ul><li>报错<figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">[<span class="hljs-number">08001</span>] [Microsoft[ODBc Driver <span class="hljs-number">17</span> <span class="hljs-keyword">for</span> sOL <span class="hljs-keyword">Server</span>]Named Pipes Provider: Could <span class="hljs-keyword">not</span> <span class="hljs-keyword">open</span> a <span class="hljs-keyword">connection</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">sQL</span> <span class="hljs-keyword">Server</span> [<span class="hljs-number">53</span>](<span class="hljs-number">53</span>)<br>[HYT00] [Microsoft][ODBC Driver <span class="hljs-number">17</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">SQl</span> <span class="hljs-keyword">Server</span>]<span class="hljs-keyword">Login</span> timeout expired (<span class="hljs-number">0</span>)<br>[<span class="hljs-number">08001</span>l [MicrosoftlODBC Driver <span class="hljs-number">17</span> <span class="hljs-keyword">for</span> SOl ServerlA network-related <span class="hljs-keyword">or</span> instance-specific error has occurred whileestablishing a <span class="hljs-keyword">connection</span> <span class="hljs-keyword">to</span> SOL <span class="hljs-keyword">Server</span>, <span class="hljs-keyword">Server</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">found</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> accessible. <span class="hljs-keyword">Check</span> <span class="hljs-keyword">if</span> instance <span class="hljs-type">name</span> <span class="hljs-keyword">is</span> correct <span class="hljs-keyword">and</span> <span class="hljs-keyword">if</span> SOlServer <span class="hljs-keyword">is</span> configured <span class="hljs-keyword">to</span> allow remote connections. <span class="hljs-keyword">For</span> more information see SOL <span class="hljs-keyword">Server</span> Books Online. (<span class="hljs-number">53</span>)<br></code></pre></div></td></tr></table></figure></li><li>找到<code>E:\Program Files\PremiumSoft\Navicat Premium 15</code>下的<code>msodbcsql_64.msi</code>,双击安装</li></ul><h3 id="5-运行init-sql"><a href="#5-运行init-sql" class="headerlink" title="5.运行init.sql"></a>5.运行init.sql</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>开发环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>Window</tag>
+      
+      <tag>SQL Server</tag>
+      
+      <tag>navicat</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Window下Docker环境部署(一)</title>
+    <link href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%80/"/>
+    <url>/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%80/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-整体架构图"><a href="#1-整体架构图" class="headerlink" title="1. 整体架构图"></a>1. 整体架构图</h2><pre><code class=" mermaid">graph TD    subgraph 数据层 Data Layer        A[(SQL Server)]        B[(Redis)]        C[(Elasticsearch)]    end    subgraph 应用层 Application Layer        E[Java 应用服务]        F[Java 引擎服务]        G[wkhtmltopdf]        H[Nginx]    end        subgraph 互联网消息队列 RabbitMQ        I[RabbitMQ]    end    用户 --&gt;|HTTP/HTTPS| H    H --&gt;|静态资源| 用户    H --&gt;|反向代理| E    E --&gt;|TCP| A    E --&gt;|TCP| B    E --&gt;|HTTP| C    E --&gt;|API| F    E --&gt;|API| G    E --&gt;|AMQP| I    G --&gt;|文件存储| H</code></pre><h2 id="2-目录结构"><a href="#2-目录结构" class="headerlink" title="2.目录结构"></a>2.目录结构</h2><figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">project</span>/<br>├── data-layer/                  <span class="hljs-comment"># 数据服务专用</span><br>│   ├── docker-compose.yml       <span class="hljs-comment"># 数据层编排文件</span><br>│   └── volumes/<br>│       ├── mssql-data/          <span class="hljs-comment"># SQL Server数据卷</span><br>│       ├── redis-data/          <span class="hljs-comment"># Redis数据卷</span><br>│       └── es-data/             <span class="hljs-comment"># ES数据卷</span><br>└── app-layer/                   <span class="hljs-comment"># 应用服务专用</span><br>├── docker-compose.yml       <span class="hljs-comment"># 应用层编排文件</span><br>├── nginx/<br>│   ├── nginx.conf           <span class="hljs-comment"># Nginx主配置</span><br>│   └── certs/               <span class="hljs-comment"># SSL证书目录</span><br>├── java-app/                <span class="hljs-comment"># 业务应用</span><br>│   ├── Dockerfile<br>│   └── <span class="hljs-keyword">target</span>/*.jar         <br>├── java-platform/               <span class="hljs-comment"># 引擎服务</span><br>│   ├── Dockerfile<br>│   └── <span class="hljs-keyword">target</span>/*.jar<br>├── wk2pdf/                  <span class="hljs-comment"># PDF服务</span><br>│   └── Dockerfile<br>└── static-files/            <span class="hljs-comment"># 静态文件存储</span><br></code></pre></div></td></tr></table></figure><h2 id="3-网络设计"><a href="#3-网络设计" class="headerlink" title="3.网络设计"></a>3.网络设计</h2><table><thead><tr><th>网络名称</th><th>网络类型</th><th>连接服务</th><th>访问策略</th></tr></thead><tbody><tr><td>data-network</td><td>bridge</td><td>SQL Server&#x2F;Redis&#x2F;ES&#x2F;RabbitMQ</td><td>仅允许应用层服务访问</td></tr><tr><td>app-network</td><td>bridge</td><td>Nginx&#x2F;Java应用&#x2F;Java引擎&#x2F;wk2pdf</td><td>仅允许外部访问Nginx</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>开发环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>Window</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>高阶调研能力</title>
+    <link href="/2025/03/25/%E9%AB%98%E9%98%B6%E8%B0%83%E7%A0%94%E8%83%BD%E5%8A%9B/"/>
+    <url>/2025/03/25/%E9%AB%98%E9%98%B6%E8%B0%83%E7%A0%94%E8%83%BD%E5%8A%9B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="调研能力一-挖掘式调研-找竞品的问题"><a href="#调研能力一-挖掘式调研-找竞品的问题" class="headerlink" title="调研能力一 挖掘式调研(找竞品的问题)"></a>调研能力一 挖掘式调研(找竞品的问题)</h2><ol><li>拆分问题</li><li>挖掘信息</li><li>评估信息</li><li>关键假设</li><li>验证假设(证伪)</li><li>结论</li></ol><h2 id="调研能力二-系统式调研-抄竞品"><a href="#调研能力二-系统式调研-抄竞品" class="headerlink" title="调研能力二 系统式调研(抄竞品)"></a>调研能力二 系统式调研(抄竞品)</h2><ol><li>确定目标</li><li>搜集资料</li><li>分析资料</li><li>以竞品为成功标准做尝试</li></ol><h2 id="调研能力三-爆炸式调研-在一堆竞品中找成功的秘籍"><a href="#调研能力三-爆炸式调研-在一堆竞品中找成功的秘籍" class="headerlink" title="调研能力三 爆炸式调研(在一堆竞品中找成功的秘籍)"></a>调研能力三 爆炸式调研(在一堆竞品中找成功的秘籍)</h2><ol><li>确定目标</li><li>搜集大量同行的资料</li><li>分析大量资料</li><li>找到成功的共性</li><li>验证成功的共性</li></ol><h2 id="调研能力四-自动化调研"><a href="#调研能力四-自动化调研" class="headerlink" title="调研能力四 自动化调研"></a>调研能力四 自动化调研</h2><ol><li>确定目标</li><li>使用自动化的手段搜集大量资料(爬虫,人工)</li><li>编写一套流程分析大量资料</li><li>找到成功的共性,设置报警值</li><li>实时监控对手，让自己比对手更了解对手</li><li>完成站稳第一或者成功逆袭成为第一</li></ol><h2 id="调研步骤"><a href="#调研步骤" class="headerlink" title="调研步骤"></a>调研步骤</h2><ol><li>明确调研目标,你想通过调研达到什么目标(少投资,可行性,上限有多高)</li><li>缩小调研范围,判断哪些是关键信息(房租,成本,市场规模,竞争对手)</li><li>罗列竞品,判断竞品的优点和缺点(优点:价格便宜,缺点:质量差,没名气)取长补短(没有竞品的话就要考虑一下,为什么会没有竞品,是不是这个市场并不适合这个产品)</li><li>不择手段的获取情报,有哪些手段获取情报(装客户,装面试,问竞品的上下游供应商)</li><li>拿到想要的信息,用证伪的方式来验证目标到底可行不可行(不行果断放弃,别犹豫)</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>创业</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>调研能力</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>监测jvm数据变化</title>
     <link href="/2025/03/18/%E7%9B%91%E6%B5%8Bjvm%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96/"/>
     <url>/2025/03/18/%E7%9B%91%E6%B5%8Bjvm%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96/</url>
@@ -362,9 +532,9 @@
     
     <tags>
       
-      <tag>CentOS7</tag>
-      
       <tag>git</tag>
+      
+      <tag>CentOS7</tag>
       
     </tags>
     
@@ -389,9 +559,9 @@
     
     <tags>
       
-      <tag>CentOS7</tag>
-      
       <tag>git</tag>
+      
+      <tag>CentOS7</tag>
       
     </tags>
     

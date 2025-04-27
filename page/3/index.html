@@ -182,16 +182,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%94/">Window下Docker环境部署(五)</a>
+        <a href="/2024/11/06/%E8%BF%81%E7%A7%BBGitlab/">迁移Gitlab</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%94/">
+        <a href="/2024/11/06/%E8%BF%81%E7%A7%BBGitlab/">
           
           
             
           
-          命名卷部署nginx最新版方案1 创建命名数据卷12345678910# 创建名为es_vol的持久化存储卷（数据由Docker自动管理）PS C:\Users\Administrator&gt; docker volume create nginx_conf_volnginx_conf_volPS C:\Users\Administrator&gt; docker volume create n
+          服务器信息源服务器gitlab为39.0.0.0:8083目标服务器gitlab为47.0.0.0:8083要整个GitLab库迁移，可以按照以下步骤进行操作：
+1. 在源GitLab服务器上创建一个备份文件：1sudo gitlab-rake gitlab:backup:create
+生成的备份文件为举例：&#x2F;var&#x2F;opt&#x2F;gitlab&#x2F;backups&#
         </a>
       </p>
 
@@ -199,425 +201,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-27 18:11" pubdate>
-              2025-04-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/nginx/">nginx</a>
-            
-              <a href="/tags/docker/">docker</a>
-            
-              <a href="/tags/Window/">Window</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E5%9B%9B/">Window下Docker环境部署(四)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E5%9B%9B/">
-          
-          
-            
-          
-          命名卷部署es7.13.2方案1 创建命名数据卷12# 创建名为es_vol的持久化存储卷（数据由Docker自动管理）docker volume create es_vol
-特点
-数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）
-无需手动配置Windows目录权限，适合快速部署
-
-2.启动SQL Server容器1docker run -d --
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-27 15:28" pubdate>
-              2025-04-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
-            
-              <a href="/tags/Window/">Window</a>
-            
-              <a href="/tags/es/">es</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%89/">Window下Docker环境部署(三)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%89/">
-          
-          
-            
-          
-          命名卷部署redis7.0方案1 创建命名数据卷12# 创建名为mssql_vol的持久化存储卷（数据由Docker自动管理）docker volume create mssql_vol
-特点
-数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）
-无需手动配置Windows目录权限，适合快速部署
-
-2.启动SQL Server容器1docker run
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-27 15:03" pubdate>
-              2025-04-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
-            
-              <a href="/tags/Window/">Window</a>
-            
-              <a href="/tags/redis/">redis</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%8C/">Window下Docker环境部署(二)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%8C/">
-          
-          
-            
-          
-          命名卷部署SqlServer2017方案1 创建命名数据卷12# 创建名为mssql_vol的持久化存储卷（数据由Docker自动管理）docker volume create mssql_vol
-特点
-数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）
-无需手动配置Windows目录权限，适合快速部署
-
-2.启动SQL Server容器1docke
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-27 14:39" pubdate>
-              2025-04-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
-            
-              <a href="/tags/Window/">Window</a>
-            
-              <a href="/tags/SQL-Server/">SQL Server</a>
-            
-              <a href="/tags/navicat/">navicat</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%80/">Window下Docker环境部署(一)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%B8%80/">
-          
-          
-            
-          
-          1. 整体架构图graph TD
-    subgraph 数据层 Data Layer
-        A[(SQL Server)]
-        B[(Redis)]
-        C[(Elasticsearch)]
-    end
-
-    subgraph 应用层 Application Layer
-        E[Java 应用服务]
-        F[Java 引擎服务]
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-27 14:10" pubdate>
-              2025-04-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
-            
-              <a href="/tags/Window/">Window</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/03/25/%E9%AB%98%E9%98%B6%E8%B0%83%E7%A0%94%E8%83%BD%E5%8A%9B/">高阶调研能力</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/03/25/%E9%AB%98%E9%98%B6%E8%B0%83%E7%A0%94%E8%83%BD%E5%8A%9B/">
-          
-          
-            
-          
-          调研能力一 挖掘式调研(找竞品的问题)
-拆分问题
-挖掘信息
-评估信息
-关键假设
-验证假设(证伪)
-结论
-
-调研能力二 系统式调研(抄竞品)
-确定目标
-搜集资料
-分析资料
-以竞品为成功标准做尝试
-
-调研能力三 爆炸式调研(在一堆竞品中找成功的秘籍)
-确定目标
-搜集大量同行的资料
-分析大量资料
-找到成功的共性
-验证成功的共性
-
-调研能力四 自动化调研
-确定目标
-使用自动化的手段搜集大量资料(爬虫,人工
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-25 20:56" pubdate>
-              2025-03-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%88%9B%E4%B8%9A/">创业</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%B0%83%E7%A0%94%E8%83%BD%E5%8A%9B/">调研能力</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/03/18/%E7%9B%91%E6%B5%8Bjvm%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96/">监测jvm数据变化</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/03/18/%E7%9B%91%E6%B5%8Bjvm%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96/">
-          
-          
-            
-          
-          工具
-jconsole(java自带)
-在安装java的目录bin下
-
-准备工作
-启动时需要加上一些参数(会有性能损耗)123456java -Dcom.sun.management.jmxremote ^-Dcom.sun.management.jmxremote.port=12345 ^  # 指定JMX端口（如12345）-Dcom.sun.management.jmxremote.auth
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-18 16:08" pubdate>
-              2025-03-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/java/">java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/jvm/">jvm</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/03/07/idea%E9%85%8D%E7%BD%AEmaven%E5%B0%8F%E5%9D%91%E8%AE%B0%E5%BD%95/">idea配置maven小坑记录</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/03/07/idea%E9%85%8D%E7%BD%AEmaven%E5%B0%8F%E5%9D%91%E8%AE%B0%E5%BD%95/">
-          
-          
-            
-          
-          现象
-idea 配置maven 时，提示找不到maven对应的jar包文件。
-
-环境
-内网环境
-idea，maven，jdk 版本均为常用版本（因为工作原因，需要经常给内网用户部署系统）
-
-解决方法
-File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Maven
-勾上work offline选
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-07 17:14" pubdate>
-              2025-03-07
+            <time datetime="2024-11-06 14:32" pubdate>
+              2024-11-06
             </time>
           </div>
         
@@ -633,9 +218,9 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/maven/">maven</a>
+              <a href="/tags/git/">git</a>
             
-              <a href="/tags/idea/">idea</a>
+              <a href="/tags/CentOS7/">CentOS7</a>
             
           </div>
         
@@ -649,22 +234,18 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2025/02/19/ubuntu-server24-%E5%AE%89%E8%A3%85clash/">ubuntu server24 安装clash</a>
+        <a href="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/">安装Gitlab</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2025/02/19/ubuntu-server24-%E5%AE%89%E8%A3%85clash/">
+        <a href="/2024/11/05/%E5%AE%89%E8%A3%85Gitlab/">
           
           
             
           
-          Linux 一键安装 Clash因为有在服务器上使用代理的需求，试过许多开源脚本，总是遇到各种问题。于是自己动手，丰衣足食：对 Clash 的安装过程及功能进行了友好封装，使用起来优雅、简单、明确。
-快速开始环境要求
-需要 root 或 sudo 权限。
-具备 bash 和 systemd 的系统环境。
-已适配：CentOS 7.6、Debian 12、Ubuntu 24.04.1 LTS。
-
-一
+          安装并配置必要的依赖关系在CentOS系统上安装所需的依赖：ssh，防火墙,postfix(用于邮件通知) ，wget，以下这些命令也会打开系统防火墙中的HTTP和SSH端口访问。
+安装ssh1sudo yum install -y curl policycoreutils-pythonopenssh-server
+将SSH服务设置成开机自启动，安装命令：1sudo systemctl enabl
         </a>
       </p>
 
@@ -672,47 +253,8 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-02-19 10:51" pubdate>
-              2025-02-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/02/16/%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85MySQL%E6%95%B0%E6%8D%AE%E5%BA%938-0/">使用docker安装MySQL数据库8.0</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/02/16/%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85MySQL%E6%95%B0%E6%8D%AE%E5%BA%938-0/">
-          
-          
-            
-          
-          安装命令1. 拉取 MySQL 镜像docker pull mysql:8
-2. 运行mysql镜像并设置环境变量1docker run --name my_mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -d -p 3306:3306 mysql:8
-
-参数详解:
-
-–name my_mysql：给容器命名为 my_mysql，方便管理。-e MY
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-02-16 12:13" pubdate>
-              2025-02-16
+            <time datetime="2024-11-05 16:01" pubdate>
+              2024-11-05
             </time>
           </div>
         
@@ -720,7 +262,7 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/docker/">docker</a>
+              <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
             
           </div>
         
@@ -728,7 +270,256 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mysql/">mysql</a>
+              <a href="/tags/git/">git</a>
+            
+              <a href="/tags/CentOS7/">CentOS7</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/">Centos7安装RabbitMQ3.8.5</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/11/05/Centos7%E5%AE%89%E8%A3%85RabbitMQ3-8-5/">
+          
+          
+            
+          
+          系统环境
+Centos7-64位
+Erlang-OTP 23
+RabbitMQ-3.8.5
+
+安装Erlangerlang和rabbitmq的版本对应关系版本对应网址
+通过rpm安装erlang
+完成erlang的前置条件配置1curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | s
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-05 15:16" pubdate>
+              2024-11-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/RabbitMQ/">RabbitMQ</a>
+            
+              <a href="/tags/CentOS7/">CentOS7</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/11/04/Markdow%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8Chexo%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD/">Markdown文档的基础使用和hexo常用的功能</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/11/04/Markdow%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8Chexo%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD/">
+          
+          
+            
+          
+          Markdown文档的基础使用标题语法要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题(例如：### My Header)。
+
+
+
+写法
+样式
+
+
+
+# 一级标题
+一级标题
+
+
+## 二级标题
+一级标题
+
+
+### 三级标题
+一级标题
+
+
+#### 四级标题
+一级标题
+
+
+##### 五级标题
+一级标题
+
+
+###### 六级标
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-04 16:24" pubdate>
+              2024-11-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AA%E4%BA%BABlog/">个人Blog</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/markdown/">markdown</a>
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/">windows和linux frp自动管理配置</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/11/03/windows%E5%92%8Clinux-frp%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE/">
+          
+          
+            
+          
+          简介
+frp 是一个可用于内网穿透的高性能的反向代理开源应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。frp 使用Go 语言开发，得益于此，我们使用非常简单，只需要添加执行权限就可以运行了。如果需要将它运行在后台，作为服务的运行的话，就需要我们对系统有一定的了解了，下面我简单介绍一下，如何将 frp安装为系统服务注意：在安装服
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-03 12:27" pubdate>
+              2024-11-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/go/">go</a>
+            
+              <a href="/tags/nssm/">nssm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/">利用Github+Hexo打造自己的永久Blog</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/11/02/%E5%88%A9%E7%94%A8Github-Hexo%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B0%B8%E4%B9%85Blog/">
+          
+          
+            
+          
+          注册GitHubGitHub官网
+进入官网,点击sign up 进行注册
+输入自己的邮箱tips:有时需要科学上网,自行解决
+
+安装git Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。
+1. 下载官网下载页面：Gitdownload我选择的是Win 64位的安装版本
+2. 安装双击安装包开始安装，一路点击 Next 即可，安装完成后鼠标右键会有 Git Bash 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-02 10:18" pubdate>
+              2024-11-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AA%E4%BA%BABlog/">个人Blog</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/git/">git</a>
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+              <a href="/tags/VSCode/">VSCode</a>
+            
+              <a href="/tags/node-js/">node.js</a>
             
           </div>
         
@@ -740,7 +531,7 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span>
     </span>
   </nav>
 
