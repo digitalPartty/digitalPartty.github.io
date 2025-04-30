@@ -182,6 +182,59 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2025/04/28/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E5%85%AD/">Window下Docker环境部署(六)</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2025/04/28/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E5%85%AD/">
+          
+          
+            
+          
+          1.创建命名数据卷123docker volume create pdf_voldocker volume create record_voldocker volume create app_log_vol
+2.编写Dockerfile123456789101112131415161718192021222324252627282930# 基础镜像（保持原配置）FROM openjdk:11-jd
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-04-28 14:17" pubdate>
+              2025-04-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/docker/">docker</a>
+            
+              <a href="/tags/Window/">Window</a>
+            
+              <a href="/tags/java/">java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2025/04/27/Window%E4%B8%8BDocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-%E4%BA%94/">Window下Docker环境部署(五)</a>
       </h1>
 
@@ -191,7 +244,8 @@
           
             
           
-          命名卷部署nginx最新版方案1 创建命名数据卷12345678910# 创建名为es_vol的持久化存储卷（数据由Docker自动管理）PS C:\Users\Administrator&gt; docker volume create nginx_conf_volnginx_conf_volPS C:\Users\Administrator&gt; docker volume create n
+          命名卷部署nginx最新版方案1.创建命名数据卷123# 创建名为nginx_log_vol的持久化存储卷（防止nginx突然停止没有日志）PS C:\Users\Administrator&gt; docker volume create nginx_log_volnginx_log_vol
+2.启动nginx容器1docker run -d --name nginx -p 80:80 -p 4
         </a>
       </p>
 
@@ -216,11 +270,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/nginx/">nginx</a>
-            
               <a href="/tags/docker/">docker</a>
             
               <a href="/tags/Window/">Window</a>
+            
+              <a href="/tags/nginx/">nginx</a>
             
           </div>
         
@@ -678,59 +732,6 @@ File -&gt; Settings -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; M
           </div>
         
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2025/02/16/%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85MySQL%E6%95%B0%E6%8D%AE%E5%BA%938-0/">使用docker安装MySQL数据库8.0</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2025/02/16/%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85MySQL%E6%95%B0%E6%8D%AE%E5%BA%938-0/">
-          
-          
-            
-          
-          安装命令1. 拉取 MySQL 镜像docker pull mysql:8
-2. 运行mysql镜像并设置环境变量1docker run --name my_mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -d -p 3306:3306 mysql:8
-
-参数详解:
-
-–name my_mysql：给容器命名为 my_mysql，方便管理。-e MY
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-02-16 12:13" pubdate>
-              2025-02-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/docker/">docker</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/mysql/">mysql</a>
-            
-          </div>
         
       </div>
     </article>

@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      286 字
+      292 字
     </span>
   
 
@@ -241,7 +241,7 @@
 <li>数据存储在Docker托管路径（通过\wsl$\docker-desktop-data...访问）</li>
 <li>无需手动配置Windows目录权限，适合快速部署</li>
 </ul>
-<h3 id="2-启动SQL-Server容器"><a href="#2-启动SQL-Server容器" class="headerlink" title="2.启动SQL Server容器"></a>2.启动SQL Server容器</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">--name</span> redis7 <span class="hljs-literal">-p</span> <span class="hljs-number">6379</span>:<span class="hljs-number">6379</span> <span class="hljs-literal">-v</span> redis_vol:/<span class="hljs-keyword">data</span> <span class="hljs-literal">-e</span> REDIS_PASSWORD=Root1234 redis:<span class="hljs-number">7.0</span>.<span class="hljs-number">14</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="2-启动SQL-Server容器"><a href="#2-启动SQL-Server容器" class="headerlink" title="2.启动SQL Server容器"></a>2.启动SQL Server容器</h3><figure class="highlight powershell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">--name</span> redis7 <span class="hljs-literal">-p</span> <span class="hljs-number">6379</span>:<span class="hljs-number">6379</span> <span class="hljs-literal">-v</span> redis_vol:/<span class="hljs-keyword">data</span> redis:<span class="hljs-number">7.0</span>.<span class="hljs-number">14</span> redis<span class="hljs-literal">-server</span> <span class="hljs-literal">--requirepass</span> <span class="hljs-string">&quot;Root1234&quot;</span> <span class="hljs-literal">--protected-mode</span> yes<br></code></pre></div></td></tr></table></figure>
 <h4 id="关键参数说明："><a href="#关键参数说明：" class="headerlink" title="关键参数说明："></a>关键参数说明：</h4><ul>
 <li><code>-v redis_vol:/data</code>：将容器内的&#x2F;data映射到命名卷</li>
 <li>容器停止&#x2F;重启不会删除数据，但执行<code>docker rm</code>会销毁未挂载的容器层数据</li>
